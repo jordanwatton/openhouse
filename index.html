@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open House</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== Hero (centered, big logo, search) ===== -->
+<section class="hero">
+  <div class="container-narrow">
+
+    <h1 class="hero-brand">
+      <span class="brand-mark">⌂</span>Open House
+    </h1>
+
+    <p class="lede" style="margin-top: 6px;">
+      Search any address in Australia to read what people who lived there had
+      to say. The home itself, the building, and the surrounding suburb, all
+      from real residents.
+    </p>
+
+    <form id="homeSearch" class="searchbar" action="search.html" method="get" role="search">
+      <input
+        type="text"
+        name="q"
+        id="homeSearchInput"
+        placeholder="Search an address, suburb or postcode"
+        aria-label="Search by address, suburb or postcode"
+        autocomplete="off"
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- ===== Direct CTA: review your old place ===== -->
+<section class="alt-bg" style="padding: 88px 0;">
+  <div class="container-narrow" style="text-align: center;">
+    <h2 style="max-width: 540px; margin: 0 auto 14px;">
+      <span class="flourish">Review a place you've lived</span>
+    </h2>
+    <p class="soft" style="max-width: 460px; margin: 0 auto 28px; font-size: 1.05rem;">
+      Your honest take helps the next person choose where to live.
+    </p>
+    <a href="review.html" class="btn btn-primary btn-large">Write a review</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">⌂</span> Open House
+      </a>
+      <p class="footer-blurb">
+        A community record of what Australian homes, buildings and
+        neighbourhoods are really like to live in.
+      </p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="browse.html">Browse properties</a>
+      <a href="review.html">Write a review</a>
+      <a href="about.html">About</a>
+    </div>
+    <div>
+      <h4>Community</h4>
+      <a href="about.html">How verification works</a>
+      <a href="about.html">Community charter</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 Open House. Made in Sydney, Australia.
+  </div>
+</footer>
+
+<script>
+  // Demo routing: send the search to the right placeholder page based on the input.
+  // Anything containing "ashfield" or "orpington" goes to the sample property page;
+  // everything else goes to the no-reviews state.
+  document.getElementById('homeSearch').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = (document.getElementById('homeSearchInput').value || '').toLowerCase();
+    if (q.indexOf('ashfield') !== -1 || q.indexOf('orpington') !== -1) {
+      window.location.href = 'property.html';
+    } else {
+      window.location.href = 'search.html';
+    }
+  });
+</script>
+
+</body>
+</html>

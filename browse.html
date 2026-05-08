@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Browse properties. Open House.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="topnav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">⌂</span>
+      Open House
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="active">Browse</a>
+      <a href="review.html">Write a review</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Search header ===== -->
+<section style="padding: 36px 0 24px;">
+  <div class="container">
+    <form class="searchbar" action="search.html" method="get" role="search" style="margin: 0 0 16px;">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search an address, suburb or postcode"
+        aria-label="Search by address, suburb or postcode"
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Empty state ===== -->
+<section style="padding: 16px 0 80px;">
+  <div class="container">
+
+    <div style="margin-bottom: 22px;">
+      <p class="eyebrow" style="margin-bottom: 6px;">Browse</p>
+      <h1 style="font-size: 2rem; margin: 0;">Reviewed properties</h1>
+      <p class="soft" style="margin-top: 6px;">
+        Once residents start adding reviews, every reviewed property will
+        appear here. You'll be able to filter by suburb, property type, and
+        rating.
+      </p>
+    </div>
+
+    <div class="empty-state">
+      <h2><span class="flourish">No reviewed properties yet.</span></h2>
+      <p class="soft" style="max-width: 480px; margin: 14px auto 22px;">
+        Open House launches when there are enough reviews to be useful. Be one
+        of the first contributors and help build the database from the ground up.
+      </p>
+      <a href="review.html" class="btn btn-primary">Add the first review</a>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <h3>Looking for a specific address?</h3>
+      <p style="margin-bottom: 16px;">
+        If you search for an address that hasn't been reviewed, we'll still
+        show you what's known about the building and the surrounding area.
+      </p>
+      <a href="search.html" class="btn btn-secondary">See an example</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">⌂</span> Open House
+      </a>
+      <p class="footer-blurb">
+        A community record of what Australian homes, buildings and
+        neighbourhoods are really like to live in.
+      </p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="browse.html">Browse properties</a>
+      <a href="review.html">Write a review</a>
+      <a href="about.html">About</a>
+    </div>
+    <div>
+      <h4>Community</h4>
+      <a href="about.html">How verification works</a>
+      <a href="about.html">Community charter</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 Open House. Made in Sydney, Australia.
+  </div>
+</footer>
+
+</body>
+</html>

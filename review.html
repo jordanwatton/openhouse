@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Write a review. Open House.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="topnav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">⌂</span>
+      Open House
+    </a>
+    <div class="nav-links">
+      <a href="browse.html">Browse</a>
+      <a href="review.html" class="active">Write a review</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Page header ===== -->
+<section style="padding: 56px 0 24px;">
+  <div class="container-narrow">
+    <p class="eyebrow" style="margin-bottom: 14px;">Write a review</p>
+    <h1 style="font-size: 2.4rem;">Tell us about your previous home.</h1>
+    <p class="soft" style="font-size: 1.08rem;">
+      The form is a series of sliders, with optional notes at the end of each
+      section. Most reviewers complete it in around four minutes. Move each
+      slider to whatever feels accurate. Least favourable on the left, most
+      favourable on the right.
+    </p>
+    <p class="muted small">
+      Reviews are anonymised on the public page. Verification happens at the end.
+    </p>
+  </div>
+</section>
+
+<!-- ===== Form ===== -->
+<section style="padding: 0 0 64px;">
+  <div class="container-narrow">
+    <form id="reviewForm" method="POST" action="#">
+
+      <!-- Property type picker -->
+      <div class="form-section">
+        <h2>Property type</h2>
+        <p class="section-sub">This determines the questions we ask. We won't ask building-specific questions for a standalone house.</p>
+
+        <div class="type-picker">
+          <input type="radio" name="propertyType" id="typeApartment" value="apartment" checked />
+          <label for="typeApartment">
+            <span class="pick-title">Apartment, unit or townhouse</span>
+            <span class="pick-sub">Part of a larger building or complex</span>
+          </label>
+
+          <input type="radio" name="propertyType" id="typeHouse" value="house" />
+          <label for="typeHouse">
+            <span class="pick-title">Standalone house</span>
+            <span class="pick-sub">Detached or semi-detached, not part of a complex</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- About you + address -->
+      <div class="form-section">
+        <h2>The basics</h2>
+        <p class="section-sub">Where you lived and what to call you on the public page.</p>
+
+        <div class="address-grid">
+          <div class="field full">
+            <label for="userName">Your first name</label>
+            <input type="text" id="userName" name="userName" placeholder="Jordan" />
+          </div>
+          <div class="field" id="apartmentNumberField">
+            <label for="apartmentNumber">Apartment / unit number</label>
+            <input type="text" id="apartmentNumber" name="apartmentNumber" placeholder="e.g. 21" />
+          </div>
+          <div class="field">
+            <label for="streetAddress">Street address</label>
+            <input type="text" id="streetAddress" name="streetAddress" placeholder="e.g. 58–70 Orpington St" />
+          </div>
+          <div class="field">
+            <label for="suburb">Suburb</label>
+            <input type="text" id="suburb" name="suburb" placeholder="Ashfield" />
+          </div>
+          <div class="field">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="NSW" />
+          </div>
+          <div class="field full">
+            <label for="postcode">Postcode</label>
+            <input type="text" id="postcode" name="postcode" placeholder="2131" />
+          </div>
+        </div>
+      </div>
+
+      <!-- THE HOME -->
+      <div class="form-section">
+        <h2>The home</h2>
+        <p class="section-sub">How was the dwelling itself?</p>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Overall, how was the home?</span>
+            <span class="slider-value" data-display="houseOverall">Functional</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="houseOverall" data-labels='["Poor","Functional","Good","Great"]'>
+          <div class="slider-extremes"><span>Poor</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Layout</span>
+            <span class="slider-value" data-display="layout">Functional</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="layout" data-labels='["Awkward","Functional","Good","Great"]'>
+          <div class="slider-extremes"><span>Awkward</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Kitchen</span>
+            <span class="slider-value" data-display="kitchen">Awkward</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="kitchen" data-labels='["Bad","Awkward","Functional","Great"]'>
+          <div class="slider-extremes"><span>Bad</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Bathroom</span>
+            <span class="slider-value" data-display="bathroom">Awkward</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="bathroom" data-labels='["Bad","Awkward","Functional","Great"]'>
+          <div class="slider-extremes"><span>Bad</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Laundry</span>
+            <span class="slider-value" data-display="laundry">Awkward</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="laundry" data-labels='["Bad","Awkward","Functional","Great"]'>
+          <div class="slider-extremes"><span>Bad</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>In-home parking</span>
+            <span class="slider-value" data-display="parking">Bad</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="parking" data-labels='["Nonexistent","Bad","Functional","Great"]'>
+          <div class="slider-extremes"><span>Nonexistent</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Natural light</span>
+            <span class="slider-value" data-display="naturalLight">Okay</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="naturalLight" data-labels='["Poor","Okay","Good","Great"]'>
+          <div class="slider-extremes"><span>Poor</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Privacy</span>
+            <span class="slider-value" data-display="privacy">Okay</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="privacy" data-labels='["Poor","Okay","Good","Great"]'>
+          <div class="slider-extremes"><span>Poor</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Sound insulation between rooms</span>
+            <span class="slider-value" data-display="soundInsulation">Okay</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="soundInsulation" data-labels='["Poor","Okay","Good","Great"]'>
+          <div class="slider-extremes"><span>Poor</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Insulation in winter</span>
+            <span class="slider-value" data-display="insulationWinter">Okay</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="insulationWinter" data-labels='["Poor","Okay","Good","Great"]'>
+          <div class="slider-extremes"><span>Freezing</span><span>Comfortable</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Insulation in summer</span>
+            <span class="slider-value" data-display="insulationSummer">Okay</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="insulationSummer" data-labels='["Poor","Okay","Good","Great"]'>
+          <div class="slider-extremes"><span>Sweltering</span><span>Cool</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Pest issues</span>
+            <span class="slider-value" data-display="insects">Often</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="insects" data-labels='["Really bad","Often","Sometimes","None"]'>
+          <div class="slider-extremes"><span>Really bad</span><span>None</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Mould</span>
+            <span class="slider-value" data-display="mould">Often</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="mould" data-labels='["Really bad","Often","Sometimes","None"]'>
+          <div class="slider-extremes"><span>Really bad</span><span>None</span></div>
+        </div>
+
+        <hr class="divider">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="notesHome">Anything to add about the home itself? (optional)</label>
+          <textarea id="notesHome" name="notesHome" placeholder="A standout feature, a quirk to be aware of, what you'd miss most…"></textarea>
+        </div>
+      </div>
+
+      <!-- NOISE -->
+      <div class="form-section">
+        <h2>Noise</h2>
+        <p class="section-sub">From outside the four walls.</p>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Neighbour noise</span>
+            <span class="slider-value" data-display="noiseNeighbour">Often noisy</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="noiseNeighbour" data-labels='["Really loud","Often noisy","Sometimes noisy","Quiet"]'>
+          <div class="slider-extremes"><span>Really loud</span><span>Quiet</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Traffic noise</span>
+            <span class="slider-value" data-display="noiseTraffic">Often noisy</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="noiseTraffic" data-labels='["Really loud","Often noisy","Sometimes noisy","Quiet"]'>
+          <div class="slider-extremes"><span>Really loud</span><span>Quiet</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Aircraft noise</span>
+            <span class="slider-value" data-display="noiseAirplane">Often noisy</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="noiseAirplane" data-labels='["Really loud","Often noisy","Sometimes noisy","Quiet"]'>
+          <div class="slider-extremes"><span>Really loud</span><span>Quiet</span></div>
+        </div>
+
+        <hr class="divider">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="notesNoise">Anything to add about noise? (optional)</label>
+          <textarea id="notesNoise" name="notesNoise" placeholder="Specific times of day, particular sources, anything residents should know."></textarea>
+        </div>
+      </div>
+
+      <!-- THE BUILDING (hidden when 'house' is selected) -->
+      <div class="form-section" id="buildingSection">
+        <h2>The building</h2>
+        <p class="section-sub">Common areas and shared facilities. Skip anything that doesn't apply.</p>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Lift reliability</span>
+            <span class="slider-value" data-display="facilityLift">Bad</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="facilityLift" data-labels='["None / never works","Bad","Functional","Reliable"]'>
+          <div class="slider-extremes"><span>None / never works</span><span>Reliable</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Building parking / garage</span>
+            <span class="slider-value" data-display="facilityParking">Bad</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="facilityParking" data-labels='["None","Bad","Adequate","Great"]'>
+          <div class="slider-extremes"><span>None</span><span>Great</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Gym</span>
+            <span class="slider-value" data-display="facilityGym">None</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="0" name="facilityGym" data-labels='["None","Basic","Good","Excellent"]'>
+          <div class="slider-extremes"><span>None</span><span>Excellent</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Pool</span>
+            <span class="slider-value" data-display="facilityPool">None</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="0" name="facilityPool" data-labels='["None","Basic","Good","Excellent"]'>
+          <div class="slider-extremes"><span>None</span><span>Excellent</span></div>
+        </div>
+
+        <hr class="divider">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="notesBuilding">Anything to add about the building? (optional)</label>
+          <textarea id="notesBuilding" name="notesBuilding" placeholder="Strata responsiveness, common-area issues, anything residents should know…"></textarea>
+        </div>
+      </div>
+
+      <!-- THE SUBURB -->
+      <div class="form-section">
+        <h2>The suburb</h2>
+        <p class="section-sub">The streets and the area at large.</p>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Local atmosphere</span>
+            <span class="slider-value" data-display="localVibe">Lively</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="2" name="localVibe" data-labels='["Quiet","Balanced","Lively","Overstimulating"]'>
+          <div class="slider-extremes"><span>Quiet</span><span>Overstimulating</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Outdoor spaces (parks, walks)</span>
+            <span class="slider-value" data-display="outdoorSpaces">Some</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="2" name="outdoorSpaces" data-labels='["None","Few","Some","Plentiful"]'>
+          <div class="slider-extremes"><span>None</span><span>Plentiful</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Local food options</span>
+            <span class="slider-value" data-display="localFoodOptions">Some</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="2" name="localFoodOptions" data-labels='["None","Few","Some","Plentiful"]'>
+          <div class="slider-extremes"><span>None</span><span>Plentiful</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Street parking</span>
+            <span class="slider-value" data-display="streetParking">Hard</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="streetParking" data-labels='["Impossible","Hard","Sometimes available","Easy"]'>
+          <div class="slider-extremes"><span>Impossible</span><span>Easy</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Public transport</span>
+            <span class="slider-value" data-display="publicTransport">Sometimes</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="2" name="publicTransport" data-labels='["None nearby","Infrequent","Reasonable","Excellent"]'>
+          <div class="slider-extremes"><span>None nearby</span><span>Excellent</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Quiet from traffic</span>
+            <span class="slider-value" data-display="trafficNeighbourhood">Moderate</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="1" name="trafficNeighbourhood" data-labels='["Heavy","Moderate","Light","None"]'>
+          <div class="slider-extremes"><span>Heavy</span><span>None</span></div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Feeling safe</span>
+            <span class="slider-value" data-display="safety">Mostly safe</span>
+          </div>
+          <input type="range" min="0" max="3" step="1" value="2" name="safety" data-labels='["Unsafe","Some concerns","Mostly safe","Very safe"]'>
+          <div class="slider-extremes"><span>Unsafe</span><span>Very safe</span></div>
+        </div>
+
+        <hr class="divider">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="notesSuburb">Anything to add about the suburb? (optional)</label>
+          <textarea id="notesSuburb" name="notesSuburb" placeholder="What you loved about the area, what you'd warn newcomers about…"></textarea>
+        </div>
+      </div>
+
+      <!-- LOCAL TIPS -->
+      <div class="form-section">
+        <h2>Local recommendations</h2>
+        <p class="section-sub">Tell the next person where to go. One-liners are perfect.</p>
+
+        <div class="field">
+          <label for="bestCafes">Best nearby cafes</label>
+          <textarea id="bestCafes" name="bestCafes" placeholder="Your top picks"></textarea>
+        </div>
+        <div class="field">
+          <label for="bestCheapEats">Best cheap eats</label>
+          <textarea id="bestCheapEats" name="bestCheapEats" placeholder="Your top picks"></textarea>
+        </div>
+        <div class="field">
+          <label for="bestLocalRestaurants">Best local restaurants</label>
+          <textarea id="bestLocalRestaurants" name="bestLocalRestaurants" placeholder="Your top picks"></textarea>
+        </div>
+        <div class="field">
+          <label for="bestTakeout">Best takeaway and delivery</label>
+          <textarea id="bestTakeout" name="bestTakeout" placeholder="Your top picks"></textarea>
+        </div>
+        <div class="field" style="margin-bottom: 0;">
+          <label for="bestBarsPubs">Best bars or pubs</label>
+          <textarea id="bestBarsPubs" name="bestBarsPubs" placeholder="Your top picks"></textarea>
+        </div>
+      </div>
+
+      <!-- VERIFICATION -->
+      <div class="callout tinted" style="margin-bottom: 24px;">
+        <h3>Verifying you lived there</h3>
+        <p style="margin-bottom: 8px;">
+          To keep reviews honest, we ask you to upload one document showing
+          this address. For example, a redacted utility bill, a lease, or
+          addressed mail. We blur out everything except the address.
+        </p>
+        <p class="small muted" style="margin-bottom: 14px;">
+          Verified reviews receive a green tick on the public page and weight
+          more heavily in the AI summary.
+        </p>
+        <a href="#" class="btn btn-secondary">Upload proof of residence</a>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <p class="small muted" style="margin:0;">
+          Your name and exact unit number won't be shown publicly.
+        </p>
+        <button type="submit" class="btn btn-primary btn-large">Submit review</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">⌂</span> Open House
+      </a>
+      <p class="footer-blurb">
+        Honest reviews of Australian homes, buildings and neighbourhoods.
+        Built by residents, for residents and prospective buyers.
+      </p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="browse.html">Browse properties</a>
+      <a href="review.html">Write a review</a>
+      <a href="about.html">About</a>
+    </div>
+    <div>
+      <h4>Community</h4>
+      <a href="about.html">How verification works</a>
+      <a href="about.html">Community charter</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 Open House · Made in Sydney, Australia
+  </div>
+</footer>
+
+<script>
+  // Live update slider value labels as user drags
+  document.querySelectorAll('.slider-block input[type="range"]').forEach(slider => {
+    const labels = JSON.parse(slider.dataset.labels);
+    const block = slider.closest('.slider-block');
+    const display = block.querySelector('.slider-value');
+    function update() {
+      const idx = parseInt(slider.value, 10);
+      if (display && labels[idx] !== undefined) {
+        display.textContent = labels[idx];
+      }
+    }
+    update();
+    slider.addEventListener('input', update);
+  });
+
+  // House vs apartment: hide building section when house is selected
+  const buildingSection = document.getElementById('buildingSection');
+  const aptNumberField = document.getElementById('apartmentNumberField');
+  const radios = document.querySelectorAll('input[name="propertyType"]');
+  function updatePropertyType() {
+    const value = document.querySelector('input[name="propertyType"]:checked').value;
+    if (value === 'house') {
+      buildingSection.style.display = 'none';
+      aptNumberField.style.display = 'none';
+    } else {
+      buildingSection.style.display = '';
+      aptNumberField.style.display = '';
+    }
+  }
+  radios.forEach(r => r.addEventListener('change', updatePropertyType));
+  updatePropertyType();
+
+  // Submit the review to the serverless function, which writes to Airtable.
+  document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+
+    // Build a plain JSON object from the form fields.
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+      const response = await fetch('/api/submit-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Submission failed.');
+      }
+
+      window.location.href = 'thanks.html';
+    } catch (err) {
+      console.error('Submission error:', err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      alert(
+        (err && err.message) ||
+        'Sorry, something went wrong saving your review. Please try again.'
+      );
+    }
+  });
+</script>
+
+</body>
+</html>

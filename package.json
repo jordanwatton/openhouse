@@ -1,0 +1,9 @@
+{
+  "name": "openhouse",
+  "version": "0.1.0",
+  "description": "Open House: honest reviews of Australian homes.",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}
