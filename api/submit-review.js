@@ -28,12 +28,21 @@ const NUMERIC_FIELDS = [
 const TEXT_FIELDS = [
   // Property + address
   'propertyType',
-  'userName', 'apartmentNumber', 'streetAddress', 'suburb', 'state', 'postcode',
-  // Per-section notes
+  'userName', 'userEmail', 'apartmentNumber', 'streetAddress', 'suburb', 'state', 'postcode',
+  // Per-section prose (open-ended)
+  'descHome', 'goodHome', 'badHome',
+  'descBuilding', 'goodBuilding', 'badBuilding',
+  'descSuburb', 'goodSuburb', 'badSuburb',
+  // Optional contextual notes
+  'parkingNote', 'transportNote', 'anythingElse',
+  // Old per-section notes (kept for backwards compatibility with the v1 form)
   'notesHome', 'notesNoise', 'notesBuilding', 'notesSuburb',
   // Local recommendations
-  'bestCafes', 'bestCheapEats', 'bestLocalRestaurants', 'bestTakeout', 'bestBarsPubs',
+  'bestCafes', 'bestCheapEats', 'bestLocalRestaurants', 'bestTakeout', 'bestBarsPubs', 'bestGroceries',
 ];
+
+// Date fields (ISO strings).
+const DATE_FIELDS = ['moveInDate', 'moveOutDate'];
 
 export default async function handler(req, res) {
   // CORS for safety in case the form ever lives on a different origin.
@@ -74,6 +83,19 @@ export default async function handler(req, res) {
     if (body[key] !== undefined && body[key] !== '') {
       const n = parseInt(body[key], 10);
       if (!Number.isNaN(n)) fields[key] = n;
+    }
+  }
+
+  for (const key of DATE_FIELDS) {
+    if (typeof body[key] === 'string' && body[key].trim() !== '') {
+      // Accept either YYYY-MM or full ISO. Normalise to first-of-month ISO.
+      const v = body[key].trim();
+      if (/^\d{4}-\d{2}$/.test(v)) {
+        fields[key] = new Date(v + '-01T00:00:00Z').toISOString();
+      } else {
+        const d = new Date(v);
+        if (!Number.isNaN(d.getTime())) fields[key] = d.toISOString();
+      }
     }
   }
 
