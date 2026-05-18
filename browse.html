@@ -4,20 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Browse properties — Open House</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .browse-empty {
+      text-align: center;
+      padding: 64px 24px;
+      background: var(--paper-pure);
+      border: 1px dashed var(--line-bold);
+      border-radius: var(--r-lg);
+    }
+    .browse-skel {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .browse-skel-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 30px 24px 24px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .browse-skel-card::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: shimmer-card 1.6s ease-in-out infinite;
+    }
+    @keyframes shimmer-card {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
 </head>
 <body>
 
 <!-- ===== Nav ===== -->
 <header class="topnav">
   <div class="container">
-    <a class="brand" href="index.html">
+    <a class="brand" href="/index.html">
       <span class="brand-mark">OH</span> Open House
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="browse.html" class="active">Browse</a>
-      <a href="review-v2.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="/browse.html" class="active">Browse</a>
+      <a href="/review-v2.html">Write a review</a>
+      <a href="/about.html">About</a>
     </nav>
   </div>
 </header>
@@ -30,9 +63,9 @@
     <h1 style="max-width: 18ch; margin: 0 0 22px;">
       Every reviewed property, <em class="italic">all in one place</em>.
     </h1>
-    <p class="soft" style="max-width: 56ch; margin: 0 0 36px; font-size: 1.05rem;">
-      Filter by suburb, property type or rating. Click into any place to see what the people
-      who lived there actually said.
+    <p class="soft" id="browseLede" style="max-width: 56ch; margin: 0 0 36px; font-size: 1.05rem;">
+      Search any Australian address. Click into any reviewed place to see what the people who
+      lived there actually said.
     </p>
 
     <div class="search-wrap" style="max-width: 100%;">
@@ -57,176 +90,33 @@
   </div>
 </section>
 
-<!-- ===== Filter strip ===== -->
-<section style="padding: 0 0 32px;">
-  <div class="container">
-    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 14px 0 22px; border-bottom: 1px solid var(--line-strong);">
-      <span class="kicker no-rule" style="margin-right: 8px;">Filters</span>
-      <span class="tag solid">All · 2,847</span>
-      <span class="tag">Apartments · 1,902</span>
-      <span class="tag">Houses · 945</span>
-      <span class="tag">NSW · 1,124</span>
-      <span class="tag">VIC · 893</span>
-      <span class="tag">QLD · 510</span>
-      <span class="tag">Sort: Newest</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Property grid ===== -->
+<!-- ===== Property grid (rendered dynamically from /api/list-reviews) ===== -->
 <section style="padding: 0 0 96px;">
   <div class="container">
 
-    <div class="property-grid">
-
-      <a href="/property/58-70-orpington-st-ashfield-2131?address=58–70%20Orpington%20St%2C%20Ashfield%20NSW%202131" class="property-card">
-          <div class="meta-row">
-            <span>Ashfield · NSW · 2131</span>
-          <span class="badge warm">Featured</span>
-        </div>
-        <div class="body">
-          <h3 class="address">58–70 Orpington St</h3>
-          <p class="suburb">2-bed apartment · 18 reviews</p>
-          <p class="summary">Quiet building near the station, lift can be temperamental, north-facing units are stunning in winter.</p>
-          <div class="footer-row">
-            <span class="score"><em>7.6</em><span class="denom">/10</span></span>
-            <span class="count">18 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/214-sydney-rd-brunswick-3056?address=214%20Sydney%20Rd%2C%20Brunswick%20VIC%203056" class="property-card">
-          <div class="meta-row">
-            <span>Brunswick · VIC · 3056</span>
-          <span class="badge">Apartment</span>
-        </div>
-        <div class="body">
-          <h3 class="address">214 Sydney Rd</h3>
-          <p class="suburb">2-bed apartment · 3 reviews</p>
-          <p class="summary">Great bones, awful aircon. The cafe downstairs is the reason to stay; the building lift is the reason to leave.</p>
-          <div class="footer-row">
-            <span class="score"><em>7.4</em><span class="denom">/10</span></span>
-            <span class="count">3 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/88-brookes-st-fortitude-valley-4006?address=88%20Brookes%20St%2C%20Fortitude%20Valley%20QLD%204006" class="property-card">
-          <div class="meta-row">
-            <span>Fortitude Valley · QLD · 4006</span>
-          <span class="badge">Apartment</span>
-        </div>
-        <div class="body">
-          <h3 class="address">88 Brookes St</h3>
-          <p class="suburb">1-bed apartment · 5 reviews</p>
-          <p class="summary">Walkable to everything that matters. Bring earplugs. The on-street parking situation is its own personality test.</p>
-          <div class="footer-row">
-            <span class="score"><em>6.8</em><span class="denom">/10</span></span>
-            <span class="count">5 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/12-hardgrave-rd-west-end-4101?address=12%20Hardgrave%20Rd%2C%20West%20End%20QLD%204101" class="property-card">
-          <div class="meta-row">
-            <span>West End · QLD · 4101</span>
-          <span class="badge">House</span>
-        </div>
-        <div class="body">
-          <h3 class="address">12 Hardgrave Rd</h3>
-          <p class="suburb">3-bed Queenslander · 2 reviews</p>
-          <p class="summary">Beautiful old place, beautiful old plumbing. Worth it for the back deck and the markets two streets over.</p>
-          <div class="footer-row">
-            <span class="score"><em>8.1</em><span class="denom">/10</span></span>
-            <span class="count">2 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/9-204-king-st-newtown-2042?address=9/204%20King%20St%2C%20Newtown%20NSW%202042" class="property-card">
-          <div class="meta-row">
-            <span>Newtown · NSW · 2042</span>
-          <span class="badge">Apartment</span>
-        </div>
-        <div class="body">
-          <h3 class="address">9/204 King St</h3>
-          <p class="suburb">1-bed apartment · 7 reviews</p>
-          <p class="summary">Right above the action. Pros: every cafe and bar you'd want. Cons: every cafe and bar you'd want, until 2am.</p>
-          <div class="footer-row">
-            <span class="score"><em>6.5</em><span class="denom">/10</span></span>
-            <span class="count">7 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/42-hall-st-bondi-2026?address=42%20Hall%20St%2C%20Bondi%20NSW%202026" class="property-card">
-          <div class="meta-row">
-            <span>Bondi · NSW · 2026</span>
-          <span class="badge warm">New</span>
-        </div>
-        <div class="body">
-          <h3 class="address">42 Hall St</h3>
-          <p class="suburb">Studio · 1 review</p>
-          <p class="summary">Five-minute walk to the beach, every Sunday is a parade. Salt eats every appliance eventually.</p>
-          <div class="footer-row">
-            <span class="score"><em>7.9</em><span class="denom">/10</span></span>
-            <span class="count">1 review</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/120-gertrude-st-fitzroy-3065?address=120%20Gertrude%20St%2C%20Fitzroy%20VIC%203065" class="property-card">
-          <div class="meta-row">
-            <span>Fitzroy · VIC · 3065</span>
-          <span class="badge">Apartment</span>
-        </div>
-        <div class="body">
-          <h3 class="address">120 Gertrude St</h3>
-          <p class="suburb">2-bed warehouse conversion · 4 reviews</p>
-          <p class="summary">High ceilings, single glazing. Heating bills in July were close to half the rent. Worth it on a Saturday.</p>
-          <div class="footer-row">
-            <span class="score"><em>7.2</em><span class="denom">/10</span></span>
-            <span class="count">4 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/31-stanley-st-north-adelaide-5006?address=31%20Stanley%20St%2C%20North%20Adelaide%20SA%205006" class="property-card">
-          <div class="meta-row">
-            <span>North Adelaide · SA · 5006</span>
-          <span class="badge">House</span>
-        </div>
-        <div class="body">
-          <h3 class="address">31 Stanley St</h3>
-          <p class="suburb">3-bed bungalow · 2 reviews</p>
-          <p class="summary">Quiet street, park at the end, ten-minute tram into town. The fence costs more to maintain than the lawn.</p>
-          <div class="footer-row">
-            <span class="score"><em>8.4</em><span class="denom">/10</span></span>
-            <span class="count">2 reviews</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/property/6-14-rokeby-rd-subiaco-6008?address=6/14%20Rokeby%20Rd%2C%20Subiaco%20WA%206008" class="property-card">
-          <div class="meta-row">
-            <span>Subiaco · WA · 6008</span>
-          <span class="badge">Apartment</span>
-        </div>
-        <div class="body">
-          <h3 class="address">6/14 Rokeby Rd</h3>
-          <p class="suburb">2-bed apartment · 3 reviews</p>
-          <p class="summary">Walk-everywhere suburb, footy crowd on a Friday. Building's older than it looks, plumbing groans.</p>
-          <div class="footer-row">
-            <span class="score"><em>7.1</em><span class="denom">/10</span></span>
-            <span class="count">3 reviews</span>
-          </div>
-        </div>
-      </a>
-
+    <div id="browseMeta" class="kicker no-rule" style="margin-bottom: 22px; color: var(--ink-soft);">
+      Loading reviewed properties…
     </div>
 
-    <div style="display: flex; justify-content: center; margin-top: 56px;">
-      <a href="#" class="btn btn-secondary btn-large">Load more →</a>
+    <div id="browseGrid" class="browse-skel">
+      <div class="browse-skel-card"></div>
+      <div class="browse-skel-card"></div>
+      <div class="browse-skel-card"></div>
+    </div>
+
+    <div id="browseEmpty" class="browse-empty" style="display: none; margin-top: 48px;">
+      <p class="kicker" style="justify-content: center; margin: 0 auto 18px;">
+        <span class="dot" style="background: var(--acid-deep);"></span>
+        Early days
+      </p>
+      <h2 style="max-width: 22ch; margin: 0 auto 14px;">
+        Open House is still <em class="italic">just getting started</em>.
+      </h2>
+      <p class="soft" style="max-width: 52ch; margin: 0 auto 28px;">
+        Reviewed properties will appear here as residents add them. Lived somewhere worth
+        sharing? Yours could be the first review for that address.
+      </p>
+      <a href="/review-v2.html" class="btn btn-primary btn-large">Write the first review →</a>
     </div>
 
   </div>
@@ -236,7 +126,7 @@
 <footer class="footer">
   <div class="container">
     <div>
-      <a class="brand" href="index.html">
+      <a class="brand" href="/index.html">
         <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
@@ -246,15 +136,14 @@
     </div>
     <div>
       <h4>Explore</h4>
-      <a href="browse.html">Browse properties</a>
-      <a href="review-v2.html">Write a review</a>
-      <a href="search.html">Search</a>
+      <a href="/browse.html">Browse properties</a>
+      <a href="/review-v2.html">Write a review</a>
     </div>
     <div>
       <h4>Community</h4>
-      <a href="about.html">About</a>
-      <a href="about.html">How verification works</a>
-      <a href="about.html">Charter</a>
+      <a href="/about.html">About</a>
+      <a href="/about.html">How verification works</a>
+      <a href="/about.html">Charter</a>
     </div>
     <div>
       <h4>Get in touch</h4>
@@ -276,6 +165,72 @@
     submitId: 'browseSearchSubmit',
     suggestId: 'browseSearchSuggestions',
   });
+
+  /* ============================================================
+     Render the reviewed-properties grid from /api/list-reviews.
+     Each card links into /property/<addressSlug>.
+  ============================================================ */
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function buildPropertyCard(p) {
+    const meta = [p.suburb, p.state, p.postcode].filter(Boolean).join(' · ');
+    const isApartment = (p.propertyType || '').toLowerCase() === 'apartment';
+    const buildingHeading = isApartment
+      ? `${p.street || 'Unknown street'}`
+      : `${p.street || 'Unknown address'}`;
+    const subline = isApartment
+      ? `Apartment · ${p.reviewCount} ${p.reviewCount === 1 ? 'review' : 'reviews'}`
+      : `House · ${p.reviewCount} ${p.reviewCount === 1 ? 'review' : 'reviews'}`;
+    const summary = (p.descHome || '').slice(0, 180);
+    const score = (typeof p.houseOverall === 'number') ? p.houseOverall.toFixed(1) : null;
+    const href = `/property/${encodeURIComponent(p.addressSlug || '')}`;
+
+    return `
+      <a href="${href}" class="property-card">
+        <div class="meta-row">
+          <span>${escapeHtml(meta)}</span>
+          <span class="badge">${isApartment ? 'Apartment' : 'House'}</span>
+        </div>
+        <div class="body">
+          <h3 class="address">${escapeHtml(buildingHeading)}</h3>
+          <p class="suburb">${escapeHtml(subline)}</p>
+          <p class="summary">${escapeHtml(summary || 'Tap to read the full review.')}</p>
+          <div class="footer-row">
+            ${score ? `<span class="score"><em>${score}</em><span class="denom">/10</span></span>` : '<span class="count">Read review →</span>'}
+            <span class="count">${escapeHtml(p.firstNameInitial || 'Verified')}</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  async function loadProperties() {
+    const meta = document.getElementById('browseMeta');
+    const grid = document.getElementById('browseGrid');
+    const empty = document.getElementById('browseEmpty');
+    try {
+      const r = await fetch('/api/list-reviews');
+      const data = await r.json();
+      const props = (data && data.properties) || [];
+      if (props.length === 0) {
+        meta.style.display = 'none';
+        grid.style.display = 'none';
+        empty.style.display = '';
+        return;
+      }
+      meta.textContent = `${data.count} reviewed ${data.count === 1 ? 'property' : 'properties'}`;
+      grid.className = 'property-grid';
+      grid.innerHTML = props.map(buildPropertyCard).join('');
+    } catch (err) {
+      console.error(err);
+      meta.textContent = 'Could not load reviews right now.';
+      grid.innerHTML = '';
+    }
+  }
+
+  loadProperties();
 </script>
 
 </body>

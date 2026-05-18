@@ -27,7 +27,7 @@
   <div class="container">
 
     <p class="kicker hero-kicker">
-      <span class="dot"></span> Live · 2,847 honest reviews from real residents
+      <span class="dot"></span> <span id="heroLiveCount">Live · honest reviews from real residents</span>
     </p>
 
     <h1>
@@ -60,126 +60,28 @@
     </div>
 
     <p class="mono small muted" style="margin-top: 18px;">
-      Popular suburbs ·
-      <a href="/property/brunswick-3056?address=Brunswick%20VIC%203056" class="bare" style="color: var(--ink-soft); margin-left: 6px;">Brunswick</a>,
-      <a href="/property/ashfield-2131?address=Ashfield%20NSW%202131" class="bare" style="color: var(--ink-soft);">Ashfield</a>,
-      <a href="/property/fortitude-valley-4006?address=Fortitude%20Valley%20QLD%204006" class="bare" style="color: var(--ink-soft);">Fortitude Valley</a>,
-      <a href="/property/newtown-2042?address=Newtown%20NSW%202042" class="bare" style="color: var(--ink-soft);">Newtown</a>,
-      <a href="/property/west-end-4101?address=West%20End%20QLD%204101" class="bare" style="color: var(--ink-soft);">West End</a>
+      Tip · type any Australian address, suburb or postcode. We'll show you anything residents
+      have shared about it (and anything we can find nearby).
     </p>
 
   </div>
 </section>
 
-<!-- ===== Stat strip ===== -->
-<section class="tight">
-  <div class="container">
-    <div class="stat-strip">
-      <div class="stat">
-        <span class="num"><em>2,847</em></span>
-        <span class="label">Reviews · Verified residents</span>
-      </div>
-      <div class="stat">
-        <span class="num">612</span>
-        <span class="label">Suburbs covered</span>
-      </div>
-      <div class="stat">
-        <span class="num">8</span>
-        <span class="label">States &amp; territories</span>
-      </div>
-      <div class="stat">
-        <span class="num">100<span class="serif italic">%</span></span>
-        <span class="label">Independent — no ads, no agents</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Recent reviews (editorial showcase) ===== -->
-<section class="alt-bg">
+<!-- ===== Recent reviews — dynamic ===== -->
+<section class="alt-bg" id="recentSection" style="display: none;">
   <div class="container">
 
     <div class="section-head">
       <div>
         <p class="kicker" style="margin-bottom: 12px;">Recent reviews</p>
-        <h2 style="margin: 0;">What people are <em class="italic">actually</em> saying.</h2>
+        <h2 style="margin: 0;">The latest <em class="italic">honest</em> takes.</h2>
       </div>
       <div class="right">
         <a href="browse.html" class="bare" style="color: var(--ink); border-bottom: 1px solid var(--ink);">Browse all →</a>
       </div>
     </div>
 
-    <div class="two-col">
-
-      <!-- Featured pull-quote -->
-      <div>
-        <p class="kicker" style="margin-bottom: 16px;">Featured · Ashfield, NSW</p>
-        <p class="pull">
-          “The light in the main bedroom is <em>extraordinary</em> in winter.
-          Pour-over in bed, that kind of light. Less great in February — the
-          aircon couldn't keep up.”
-        </p>
-        <p class="pull-meta">Jordan W · Lived there 2022–2024 · Verified</p>
-        <div style="margin-top: 28px;">
-          <a href="property.html" class="btn btn-secondary">Read the full review →</a>
-        </div>
-      </div>
-
-      <!-- Recent reviews list -->
-      <div class="property-grid" style="grid-template-columns: 1fr;">
-
-        <a href="property.html" class="property-card">
-          <div class="meta-row">
-            <span>Brunswick · VIC</span>
-            <span class="badge warm">New</span>
-          </div>
-          <div class="body">
-            <h3 class="address">214 Sydney Rd</h3>
-            <p class="suburb">2-bed apartment · Reviewed by Mei L.</p>
-            <p class="summary">Great bones, awful aircon. The cafe downstairs is the reason to stay; the building lift is the reason to leave.</p>
-            <div class="footer-row">
-              <span class="score"><em>7.4</em><span class="denom">/10</span></span>
-              <span class="count">3 reviews</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="property.html" class="property-card">
-          <div class="meta-row">
-            <span>Fortitude Valley · QLD</span>
-            <span>Apartment</span>
-          </div>
-          <div class="body">
-            <h3 class="address">88 Brookes St</h3>
-            <p class="suburb">1-bed apartment · Reviewed by Tom K.</p>
-            <p class="summary">Walkable to everything that matters. Bring earplugs. The on-street parking situation is its own personality test.</p>
-            <div class="footer-row">
-              <span class="score"><em>6.8</em><span class="denom">/10</span></span>
-              <span class="count">5 reviews</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="property.html" class="property-card">
-          <div class="meta-row">
-            <span>West End · QLD</span>
-            <span>House</span>
-          </div>
-          <div class="body">
-            <h3 class="address">12 Hardgrave Rd</h3>
-            <p class="suburb">3-bed Queenslander · Reviewed by Priya R.</p>
-            <p class="summary">Beautiful old place, beautiful old plumbing. Worth it for the back deck and the markets two streets over.</p>
-            <div class="footer-row">
-              <span class="score"><em>8.1</em><span class="denom">/10</span></span>
-              <span class="count">2 reviews</span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-
-    </div>
-
+    <div id="recentGrid" class="property-grid"></div>
   </div>
 </section>
 
@@ -288,6 +190,66 @@
     submitId: 'homeSearchSubmit',
     suggestId: 'homeSearchSuggestions',
   });
+
+  /* ============================================================
+     Pull real review count + recent reviews from /api/list-reviews.
+     If there's none, hide the recent-reviews section quietly.
+  ============================================================ */
+  (async () => {
+    function escapeHtml(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    try {
+      const r = await fetch('/api/list-reviews');
+      if (!r.ok) return;
+      const data = await r.json();
+      const props = (data && data.properties) || [];
+      const count = data && data.count;
+
+      const liveEl = document.getElementById('heroLiveCount');
+      if (liveEl) {
+        if (count && count > 0) {
+          liveEl.textContent = `Live · ${count} honest review${count === 1 ? '' : 's'} from real residents`;
+        } else {
+          liveEl.textContent = 'Live · just launched · be among the first to review';
+        }
+      }
+
+      if (props.length === 0) return;
+
+      const section = document.getElementById('recentSection');
+      const grid = document.getElementById('recentGrid');
+      grid.innerHTML = props.slice(0, 6).map(p => {
+        const meta = [p.suburb, p.state, p.postcode].filter(Boolean).join(' · ');
+        const isApt = (p.propertyType || '').toLowerCase() === 'apartment';
+        const subline = `${isApt ? 'Apartment' : 'House'} · ${p.reviewCount} ${p.reviewCount === 1 ? 'review' : 'reviews'}`;
+        const summary = (p.descHome || '').slice(0, 160);
+        const score = (typeof p.houseOverall === 'number') ? p.houseOverall.toFixed(1) : null;
+        const href = `/property/${encodeURIComponent(p.addressSlug || '')}`;
+        return `
+          <a href="${href}" class="property-card">
+            <div class="meta-row">
+              <span>${escapeHtml(meta)}</span>
+              <span class="badge">${isApt ? 'Apartment' : 'House'}</span>
+            </div>
+            <div class="body">
+              <h3 class="address">${escapeHtml(p.street || 'Unknown')}</h3>
+              <p class="suburb">${escapeHtml(subline)}</p>
+              <p class="summary">${escapeHtml(summary || 'Tap to read the full review.')}</p>
+              <div class="footer-row">
+                ${score ? `<span class="score"><em>${score}</em><span class="denom">/10</span></span>` : '<span class="count">Read review →</span>'}
+                <span class="count">${escapeHtml(p.firstNameInitial || 'Verified')}</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+      section.style.display = '';
+    } catch (err) {
+      console.warn('home recent reviews:', err);
+    }
+  })();
 </script>
 
 </body>
