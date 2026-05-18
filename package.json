@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Open House: honest reviews of Australian homes.",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=18"
   }
