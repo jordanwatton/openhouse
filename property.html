@@ -3,280 +3,615 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>21 / 58–70 Orpington St, Ashfield. Open House.</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Loading address — Open House</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .loading-shell { padding: 96px 0; }
+    .skeleton {
+      background: linear-gradient(90deg, var(--bone-deep) 0%, var(--bone-soft) 50%, var(--bone-deep) 100%);
+      background-size: 200% 100%;
+      border-radius: var(--r-sm);
+      animation: shimmer 1.4s ease-in-out infinite;
+      height: 1em;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skel-h1 { height: 3rem; width: 60%; margin-bottom: 16px; }
+    .skel-line { height: 1rem; width: 100%; margin-bottom: 10px; }
+    .skel-line.short { width: 70%; }
+    .scope-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .scope-badge.exact    { background: var(--ink); color: var(--acid); }
+    .scope-badge.building { background: var(--moss); color: var(--paper-text); }
+    .scope-badge.suburb   { background: var(--sand); color: var(--ink); }
+    .scope-badge.empty    { background: var(--bone-deep); color: var(--ink-soft); border: 1px dashed var(--line-bold); }
+    .scope-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.85;
+    }
+    .theme-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .empty-pitch {
+      background: var(--paper-pure);
+      border: 1px dashed var(--line-bold);
+      border-radius: var(--r-lg);
+      padding: 48px 32px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-<!-- ===== Nav ===== -->
-<nav class="topnav">
+<header class="topnav">
   <div class="container">
-    <a class="brand" href="index.html">
-      <span class="brand-mark">⌂</span>
-      Open House
+    <a class="brand" href="/index.html">
+      <span class="brand-mark">OH</span> Open House
     </a>
-    <div class="nav-links">
-      <a href="browse.html">Browse</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
-    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/browse.html">Browse</a>
+      <a href="/review-v2.html">Write a review</a>
+      <a href="/about.html">About</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- ===== Property header ===== -->
-<section style="padding: 36px 0 32px;">
+<!-- Hero / address heading -->
+<section style="padding: 56px 0 32px;">
   <div class="container">
 
-    <p class="small muted" style="margin-bottom: 12px;">
-      <a href="browse.html">← Back to browse</a> · <span>Ashfield, NSW 2131</span>
+    <p class="mono small muted" style="margin-bottom: 18px;">
+      <a href="/index.html" class="bare" style="color: var(--muted);">← Search again</a>
     </p>
 
-    <div class="property-hero" style="margin-bottom: 24px;">
-      <div class="property-photo">
-        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#F4E5C5" />
-              <stop offset="100%" stop-color="#E8C9A0" />
-            </linearGradient>
-          </defs>
-          <rect width="800" height="380" fill="url(#sky)" />
-          <circle cx="640" cy="80" r="40" fill="rgba(255,255,255,0.45)" />
-          <circle cx="640" cy="80" r="28" fill="rgba(255,236,200,0.6)" />
-          <rect x="120" y="80" width="560" height="280" fill="#8C5230" />
-          <rect x="120" y="80" width="560" height="14" fill="#6F2F18" />
-          <g fill="#6F2F18" opacity="0.55">
-            <rect x="160" y="160" width="120" height="6" />
-            <rect x="320" y="160" width="120" height="6" />
-            <rect x="480" y="160" width="120" height="6" />
-            <rect x="160" y="240" width="120" height="6" />
-            <rect x="320" y="240" width="120" height="6" />
-            <rect x="480" y="240" width="120" height="6" />
-            <rect x="160" y="320" width="120" height="6" />
-            <rect x="320" y="320" width="120" height="6" />
-            <rect x="480" y="320" width="120" height="6" />
-          </g>
-          <g fill="#FBF8F2">
-            <rect x="170" y="105" width="40" height="44" rx="2" />
-            <rect x="225" y="105" width="40" height="44" rx="2" />
-            <rect x="335" y="105" width="40" height="44" rx="2" />
-            <rect x="390" y="105" width="40" height="44" rx="2" />
-            <rect x="495" y="105" width="40" height="44" rx="2" />
-            <rect x="550" y="105" width="40" height="44" rx="2" />
-            <rect x="170" y="185" width="40" height="44" rx="2" />
-            <rect x="225" y="185" width="40" height="44" rx="2" />
-            <rect x="335" y="185" width="40" height="44" rx="2" />
-            <rect x="390" y="185" width="40" height="44" rx="2" />
-            <rect x="495" y="185" width="40" height="44" rx="2" />
-            <rect x="550" y="185" width="40" height="44" rx="2" />
-            <rect x="170" y="265" width="40" height="44" rx="2" />
-            <rect x="225" y="265" width="40" height="44" rx="2" opacity="0.85"/>
-            <rect x="335" y="265" width="40" height="44" rx="2" opacity="0.85"/>
-            <rect x="390" y="265" width="40" height="44" rx="2" />
-            <rect x="495" y="265" width="40" height="44" rx="2" />
-            <rect x="550" y="265" width="40" height="44" rx="2" opacity="0.85"/>
-          </g>
-          <g>
-            <rect x="60" y="300" width="10" height="60" fill="#5A2613" />
-            <circle cx="65" cy="290" r="34" fill="#6F8865" opacity="0.85" />
-            <circle cx="50" cy="280" r="24" fill="#6F8865" opacity="0.7" />
-            <circle cx="80" cy="278" r="22" fill="#6F8865" opacity="0.7" />
-          </g>
-        </svg>
-        <span class="photo-source">Photo: realestate.com.au listing archive</span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 14px;">
-        <div>
-          <p class="eyebrow" style="margin-bottom: 6px;">Apartment · 2 bed · 1 bath</p>
-          <h1 style="font-size: 2rem; margin-bottom: 4px;">21 / 58–70 Orpington Street</h1>
-          <p class="muted" style="font-size: 1rem;">Ashfield, NSW 2131</p>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-pill">Built c. 2002</span>
-          <span class="rating-pill">18 units</span>
-          <span class="rating-pill">No reviews yet</span>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin-top: 4px;">
-          <a href="review.html" class="btn btn-primary">Write the first review</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ===== Empty state for reviews ===== -->
-<section style="padding: 16px 0 32px;">
-  <div class="container">
-    <div class="empty-state">
-      <h2><span class="flourish">No reviews yet for this address.</span></h2>
-      <p class="soft" style="max-width: 480px; margin: 14px auto 22px;">
-        Once residents review this property, you'll see an AI-generated summary
-        of their experience here, alongside the rating breakdown and individual reviews.
+    <div id="addressHero">
+      <p class="kicker" style="margin-bottom: 16px;">
+        <span class="dot"></span> Searching…
       </p>
-      <a href="review.html" class="btn btn-primary">Write the first review</a>
+      <h1 class="skeleton skel-h1"></h1>
+      <p class="muted mono" style="font-size: 0.84rem;">…</p>
     </div>
+
   </div>
 </section>
 
-<!-- ===== Local area insights (from public sources) ===== -->
-<section class="alt-bg">
+<!-- Synopsis -->
+<section class="alt-bg" id="synopsisSection" style="display: none;">
   <div class="container">
-    <div style="margin-bottom: 22px;">
-      <p class="eyebrow" style="margin-bottom: 6px;">Around Ashfield</p>
-      <h2 style="margin: 0;">Local insights</h2>
-      <p class="soft" style="margin-top: 6px;">
-        Curated from public guides. As resident reviews come in, this section will
-        be cross-referenced with what residents themselves recommend.
-      </p>
+
+    <div class="two-col">
+      <div>
+        <p class="kicker" style="margin-bottom: 14px;">The synopsis</p>
+        <h2 style="margin: 0 0 18px;" id="synopsisHeading">What residents say.</h2>
+        <p class="soft" id="synopsisSubhead" style="font-size: 1rem; line-height: 1.6;">
+          A short, honest read drawn from every matching review.
+        </p>
+        <div id="scopeBadgeWrap" style="margin-top: 22px;"></div>
+      </div>
+
+      <div class="ai-summary">
+        <p class="ai-label">
+          <span class="ai-dot"></span>
+          <span id="aiLabelText">AI synopsis</span>
+        </p>
+        <p id="synopsisText" class="skeleton skel-line" style="height: 5em;"></p>
+        <div class="theme-row" id="themeRow"></div>
+      </div>
     </div>
 
-    <div class="tip-grid">
-      <div class="tip">
-        <div class="tip-label">Notable cafes</div>
-        <div class="tip-body">Happyfield, Solstice, Cafe X.</div>
-        <span class="tip-source">From Broadsheet</span>
-      </div>
-      <div class="tip">
-        <div class="tip-label">Cheap eats</div>
-        <div class="tip-body">Pho Vien, Bing Boy, Mamak Liverpool Rd.</div>
-        <span class="tip-source">From Time Out</span>
-      </div>
-      <div class="tip">
-        <div class="tip-label">Local restaurants</div>
-        <div class="tip-body">La Disfida (Italian), Yakitori Jin, Magic Wok.</div>
-        <span class="tip-source">From Broadsheet</span>
-      </div>
-      <div class="tip">
-        <div class="tip-label">Daily essentials</div>
-        <div class="tip-body">Ashfield Mall, Coles Liverpool Rd, Ashfield Fresh.</div>
-        <span class="tip-source">From Google Maps</span>
-      </div>
-      <div class="tip">
-        <div class="tip-label">Transport</div>
-        <div class="tip-body">Ashfield Station (T2/T3), 5 minute walk. Several bus routes on Liverpool Rd.</div>
-        <span class="tip-source">From Transport for NSW</span>
-      </div>
-      <div class="tip">
-        <div class="tip-label">Green space</div>
-        <div class="tip-body">Ashfield Park, Yeo Park, Hammond Park within 10 min walk.</div>
-        <span class="tip-source">From Inner West Council</span>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ===== Map ===== -->
-<section style="padding: 64px 0;">
+<!-- Aggregated ratings -->
+<section id="ratingsSection" style="display: none;">
   <div class="container">
-    <div style="margin-bottom: 22px;">
-      <p class="eyebrow" style="margin-bottom: 6px;">Location</p>
-      <h2 style="margin: 0;">On the map</h2>
-      <p class="soft" style="margin-top: 6px;">
-        As more nearby properties get reviewed, they'll appear here as
-        clickable pins so you can scope out the wider area.
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">Ratings</p>
+        <h2 style="margin: 0;">How residents rated it.</h2>
+      </div>
+      <div class="right">
+        <span id="ratingsMeta">…</span>
+      </div>
+    </div>
+    <div id="ratingsContainer" class="two-col-equal"></div>
+  </div>
+</section>
+
+<!-- Individual reviews -->
+<section class="alt-bg" id="reviewsSection" style="display: none;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">Reviews</p>
+        <h2 style="margin: 0;">What residents actually said.</h2>
+      </div>
+      <div class="right">
+        <span id="reviewsMeta">…</span>
+      </div>
+    </div>
+    <div id="reviewsList"></div>
+  </div>
+</section>
+
+<!-- Empty / no reviews fallback CTA -->
+<section id="emptySection" style="display: none;">
+  <div class="container">
+    <div class="empty-pitch">
+      <p class="kicker" style="justify-content: center; margin: 0 auto 18px;">
+        <span class="dot" style="background: var(--rust); box-shadow: 0 0 0 4px rgba(156,75,34,0.18);"></span>
+        No reviews yet
       </p>
-    </div>
-
-    <div class="map-wrap">
-      <div class="map">
-        <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <g stroke="rgba(135,127,115,0.20)" stroke-width="20" fill="none">
-            <path d="M -20 100 L 820 110" />
-            <path d="M -20 250 L 820 240" />
-            <path d="M 270 -10 L 250 380" />
-            <path d="M 540 -10 L 560 380" />
-          </g>
-          <g stroke="rgba(135,127,115,0.10)" stroke-width="10" fill="none">
-            <path d="M -20 60 L 820 70" />
-            <path d="M -20 180 L 820 175" />
-            <path d="M -20 320 L 820 315" />
-            <path d="M 130 -10 L 120 380" />
-            <path d="M 410 -10 L 400 380" />
-            <path d="M 690 -10 L 700 380" />
-          </g>
-          <g font-family="Georgia, serif" font-size="11" fill="rgba(79,73,64,0.55)" font-style="italic">
-            <text x="40"  y="115">Liverpool Road</text>
-            <text x="40"  y="255">Frederick Street</text>
-            <text x="275" y="40">Orpington St</text>
-            <text x="555" y="40">Charlotte St</text>
-          </g>
-          <rect x="555" y="265" width="160" height="80" rx="10" fill="rgba(111,136,101,0.20)" />
-          <text x="575" y="315" font-family="Georgia, serif" font-size="11" fill="rgba(111,136,101,0.85)" font-style="italic">
-            Ashfield Park
-          </text>
-          <rect x="60" y="180" width="50" height="22" rx="4" fill="rgba(79,73,64,0.6)" />
-          <text x="68" y="195" font-family="-apple-system,sans-serif" font-size="10" fill="white" font-weight="600">
-            Ashfield ⇄
-          </text>
-
-          <!-- Current property pin (red, larger) -->
-          <g class="map-pin" transform="translate(255 195)">
-            <circle r="14" fill="#C25A2C" />
-            <circle r="6" fill="white" />
-            <text y="-22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="600" fill="#2A2520">
-              21 / 58–70 Orpington St
-            </text>
-            <text y="-8" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#877F73">
-              You're here
-            </text>
-          </g>
-        </svg>
-      </div>
-      <div class="map-legend">
-        <div>
-          <span class="key"><span class="dot" style="background: var(--terracotta);"></span>This property</span>
-          <span class="key"><span class="dot" style="background: var(--sage);"></span>Reviewed properties (none yet)</span>
-        </div>
-        <span class="small muted">Reviewed properties will appear here as pins.</span>
-      </div>
+      <h2 style="max-width: 22ch; margin: 0 auto 14px;">
+        Nobody's reviewed <em class="italic" id="emptyAddress">this address</em> yet.
+      </h2>
+      <p class="soft" style="max-width: 56ch; margin: 0 auto 28px;">
+        We don't have direct information about this property yet. If you've lived here,
+        you'd be the first resident reviewer.
+      </p>
+      <a href="/review-v2.html" class="btn btn-primary btn-large" id="emptyCta">
+        Write the first review →
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="alt-bg" style="padding: 72px 0;">
-  <div class="container-narrow" style="text-align: center;">
-    <h2><span class="flourish">Lived at this address?</span></h2>
-    <p class="soft" style="margin: 14px auto 22px; max-width: 460px;">
-      You'd be the first to review it. Even short reviews help.
-    </p>
-    <a href="review.html" class="btn btn-primary btn-large">Write the first review</a>
+<!-- Suburb info (always shown — generic local context) -->
+<section id="suburbSection">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">Around the area</p>
+        <h2 style="margin: 0;">What's nearby.</h2>
+      </div>
+      <div class="right">
+        <span>From public guides · independent of reviews</span>
+      </div>
+    </div>
+    <div class="tip-grid" id="suburbTipsContainer">
+      <!-- Filled in by JS based on suburb -->
+    </div>
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- Big bottom CTA -->
+<section class="dark-bg" style="padding: 96px 0;">
+  <div class="container" style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;">
+    <div>
+      <p class="kicker" style="color: rgba(241,236,224,0.55); margin-bottom: 18px;">
+        <span class="dot"></span> Add yours
+      </p>
+      <h2 style="color: var(--paper-text); max-width: 18ch; margin: 0;">
+        <span id="ctaHeading">Help the next person decide.</span>
+      </h2>
+    </div>
+    <div>
+      <p style="color: rgba(241,236,224,0.72); font-size: 1.05rem; max-width: 38ch; margin: 0 0 24px;">
+        Five minutes. Verified residents only. We never show your full name — just first name and
+        last initial.
+      </p>
+      <a href="/review-v2.html" class="btn btn-primary accent btn-large">Write a review →</a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div>
-      <a class="brand" href="index.html">
-        <span class="brand-mark">⌂</span> Open House
+      <a class="brand" href="/index.html">
+        <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
-        A community record of what Australian homes, buildings and
-        neighbourhoods are really like to live in.
+        A community record of what Australian homes, buildings and neighbourhoods are really
+        like to live in. Independent. Free. Built in Sydney.
       </p>
     </div>
     <div>
       <h4>Explore</h4>
-      <a href="browse.html">Browse properties</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="/browse.html">Browse properties</a>
+      <a href="/review-v2.html">Write a review</a>
+      <a href="/index.html">Search</a>
     </div>
     <div>
       <h4>Community</h4>
-      <a href="about.html">How verification works</a>
-      <a href="about.html">Community charter</a>
-      <a href="#">Contact</a>
+      <a href="/about.html">About</a>
+      <a href="/about.html">How verification works</a>
+      <a href="/about.html">Charter</a>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="#">hello@openhouse.au</a>
+      <a href="#">Instagram</a>
+      <a href="#">Press</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    © 2026 Open House. Made in Sydney, Australia.
+    <span>© 2026 Open House · Made in Sydney</span>
+    <span>v3 / Bone &amp; Wattle</span>
   </div>
 </footer>
+
+<script>
+/* ============================================================================
+   Open House: dynamic property results page.
+   ----------------------------------------------------------------------------
+   - Reads the slug from the URL (path-based: /property/<slug>, or
+     query-based: ?slug=... or ?address=...).
+   - Calls /api/search-reviews, which returns reviews + AI synopsis + scope.
+   - Renders one of four states: exact / building / suburb / empty.
+============================================================================ */
+
+(function () {
+
+  // ----- 1. Parse the slug / address from the URL --------------------------
+
+  function getQueryParams() {
+    const out = {};
+    const q = window.location.search.replace(/^\?/, '');
+    q.split('&').forEach(pair => {
+      if (!pair) return;
+      const [k, v] = pair.split('=');
+      out[decodeURIComponent(k)] = decodeURIComponent((v || '').replace(/\+/g, ' '));
+    });
+    return out;
+  }
+
+  const params = getQueryParams();
+  const pathMatch = window.location.pathname.match(/^\/property\/([^/?#]+)/);
+  let slug = pathMatch ? pathMatch[1] : (params.slug || null);
+  const rawAddress = params.address || null;
+
+  // ----- 2. Loading state --------------------------------------------------
+
+  const heroEl = document.getElementById('addressHero');
+
+  function setLoading() {
+    heroEl.innerHTML = `
+      <p class="kicker" style="margin-bottom: 16px;">
+        <span class="dot"></span> Loading reviews…
+      </p>
+      <h1 class="skeleton skel-h1"></h1>
+      <div class="skeleton skel-line short" style="margin-top: 12px;"></div>
+    `;
+  }
+  setLoading();
+
+  // ----- 3. Fetch the data -------------------------------------------------
+
+  async function fetchResults() {
+    const qs = new URLSearchParams();
+    if (slug) qs.set('slug', slug);
+    if (rawAddress) qs.set('address', rawAddress);
+
+    try {
+      const response = await fetch('/api/search-reviews?' + qs.toString());
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return await response.json();
+    } catch (err) {
+      console.error('Failed to fetch search results:', err);
+      return null;
+    }
+  }
+
+  // ----- 4. Render helpers -------------------------------------------------
+
+  function renderAddressHero(data) {
+    const display = data.display || rawAddress || (slug || '').replace(/-/g, ' ');
+    const parts = data.query && data.query.parts;
+    const subRow = [
+      parts && parts.suburb,
+      parts && parts.state,
+      parts && parts.postcode,
+    ].filter(Boolean).join(' · ');
+
+    document.title = display + ' — Open House';
+
+    const scopeKickerMap = {
+      exact: { dotColor: 'var(--acid-deep)', text: data.reviewCount + ' verified review' + (data.reviewCount === 1 ? '' : 's') + ' for this exact address' },
+      building: { dotColor: 'var(--moss)', text: data.reviewCount + ' review' + (data.reviewCount === 1 ? '' : 's') + ' from other apartments in this building' },
+      suburb:   { dotColor: 'var(--sand)', text: data.reviewCount + ' nearby review' + (data.reviewCount === 1 ? '' : 's') + ' in this suburb' },
+      empty:    { dotColor: 'var(--rust)', text: 'No reviews yet at any nearby level' },
+    };
+    const k = scopeKickerMap[data.scope] || scopeKickerMap.empty;
+
+    heroEl.innerHTML = `
+      <p class="kicker" style="margin-bottom: 16px;">
+        <span class="dot" style="background: ${k.dotColor}; box-shadow: 0 0 0 4px rgba(0,0,0,0.04);"></span>
+        ${escapeHtml(k.text)}
+      </p>
+      <h1 style="margin: 0 0 10px;">${escapeHtml(display)}</h1>
+      <p class="muted mono" style="font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;">
+        ${escapeHtml(subRow || 'Australian address')}
+      </p>
+    `;
+  }
+
+  function renderSynopsis(data) {
+    const section = document.getElementById('synopsisSection');
+    const heading = document.getElementById('synopsisHeading');
+    const sub     = document.getElementById('synopsisSubhead');
+    const label   = document.getElementById('aiLabelText');
+    const text    = document.getElementById('synopsisText');
+    const themes  = document.getElementById('themeRow');
+    const badge   = document.getElementById('scopeBadgeWrap');
+
+    if (data.scope === 'empty' || !data.summary || !data.summary.synopsis) {
+      section.style.display = 'none';
+      return;
+    }
+
+    section.style.display = '';
+
+    // Heading + subhead + ai-label depend on scope.
+    const labelByScope = {
+      exact:    { heading: 'What residents say.',           sub: 'A short, honest read drawn from every matching review.',                     label: 'AI synopsis · this address',     badge: 'Exact match',     cls: 'exact' },
+      building: { heading: 'What this building is like.',   sub: 'We don\'t have a review for this exact unit yet — these are from elsewhere in the same building.', label: 'AI synopsis · same building',     badge: 'Building reviews', cls: 'building' },
+      suburb:   { heading: 'What this suburb is like.',     sub: 'No reviews yet for this exact address or building — here\'s what residents nearby have said.',     label: 'AI synopsis · nearby reviews',    badge: 'Suburb level',     cls: 'suburb' },
+    };
+    const cfg = labelByScope[data.scope] || labelByScope.suburb;
+
+    heading.textContent = cfg.heading;
+    sub.textContent     = cfg.sub;
+    label.textContent   = cfg.label;
+    badge.innerHTML = `<span class="scope-badge ${cfg.cls}"><span class="dot"></span> ${cfg.badge}</span>`;
+
+    text.className = '';
+    text.style.cssText = '';
+    text.style.fontFamily = 'var(--serif)';
+    text.style.fontSize   = '1.18rem';
+    text.style.lineHeight = '1.5';
+    text.style.color      = 'var(--ink)';
+    text.style.margin     = '0 0 14px';
+    text.style.letterSpacing = '-0.005em';
+    text.textContent = data.summary.synopsis;
+
+    themes.innerHTML = (data.summary.themes || []).map(t => {
+      const sentClass = t.sentiment === 'positive' ? 'positive'
+                     : t.sentiment === 'negative' ? 'warm'
+                     : '';
+      return `<span class="tag ${sentClass}">${escapeHtml(t.label)}</span>`;
+    }).join('');
+  }
+
+  function renderRatings(data) {
+    const section = document.getElementById('ratingsSection');
+    const meta    = document.getElementById('ratingsMeta');
+    const cont    = document.getElementById('ratingsContainer');
+
+    const ratings = data.ratings || {};
+    const keys = Object.keys(ratings);
+    if (keys.length === 0 || data.scope === 'empty') {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = '';
+    meta.textContent = data.reviewCount + ' review' + (data.reviewCount === 1 ? '' : 's') + ' aggregated';
+
+    // Split into two columns roughly halfway.
+    const labelMap = {
+      houseOverall: 'Overall',
+      naturalLight: 'Natural light',
+      layout: 'Layout',
+      kitchen: 'Kitchen',
+      bathroom: 'Bathroom',
+      soundInsulation: 'Sound insulation',
+      insulationWinter: 'Insulation · winter',
+      insulationSummer: 'Insulation · summer',
+      facilityLift: 'Lift reliability',
+      facilityParking: 'Building parking',
+      noiseNeighbour: 'Neighbour noise',
+      noiseTraffic: 'Traffic noise',
+      localVibe: 'Local vibe',
+      localFoodOptions: 'Food &amp; cafes',
+      publicTransport: 'Public transport',
+      safety: 'Safety',
+    };
+
+    const half = Math.ceil(keys.length / 2);
+    const col1 = keys.slice(0, half);
+    const col2 = keys.slice(half);
+
+    function buildCol(cols) {
+      return cols.map(k => {
+        const r = ratings[k];
+        const pct = Math.max(0, Math.min(100, r.mean * 10));
+        const fillClass = pct >= 75 ? 'accent' : pct >= 50 ? '' : pct >= 30 ? 'warning' : 'warning';
+        return `
+          <div class="breakdown-row">
+            <span class="breakdown-label">${labelMap[k] || k}</span>
+            <span class="breakdown-track"><span class="breakdown-fill ${fillClass}" style="width: ${pct}%"></span></span>
+            <span class="breakdown-value">${r.mean.toFixed(1)}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    cont.innerHTML = `
+      <div><div class="breakdown">${buildCol(col1)}</div></div>
+      <div><div class="breakdown">${buildCol(col2)}</div></div>
+    `;
+  }
+
+  function renderReviews(data) {
+    const section = document.getElementById('reviewsSection');
+    const meta    = document.getElementById('reviewsMeta');
+    const list    = document.getElementById('reviewsList');
+
+    if (!data.reviews || data.reviews.length === 0) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = '';
+    meta.textContent = data.reviewCount + ' review' + (data.reviewCount === 1 ? '' : 's');
+
+    list.innerHTML = data.reviews.map((r, i) => {
+      const initials = (r.firstNameInitial || 'A').split(/\s+/).map(s => s.charAt(0).toUpperCase()).join('').slice(0, 2);
+      const dateRange = [r.moveInDate, r.moveOutDate].map(formatMonth).filter(Boolean).join(' – ');
+      const body = [
+        r.descHome    && p(r.descHome),
+        r.goodHome    && p('What was good · ' + r.goodHome, true),
+        r.badHome     && p('What wasn\'t · ' + r.badHome, true),
+        r.descBuilding && p(r.descBuilding),
+        r.goodBuilding && p('Building good · ' + r.goodBuilding, true),
+        r.badBuilding  && p('Building bad · ' + r.badBuilding, true),
+        r.descSuburb   && p(r.descSuburb),
+        r.goodSuburb   && p('Suburb good · ' + r.goodSuburb, true),
+        r.badSuburb    && p('Suburb bad · ' + r.badSuburb, true),
+        r.notesNoise   && p('Noise · ' + r.notesNoise, true),
+        r.anythingElse && p('Other · ' + r.anythingElse, true),
+      ].filter(Boolean).join('');
+
+      return `
+        <article class="review">
+          <div class="review-head">
+            <div class="review-author">
+              <div class="avatar ${['', 'sand', 'moss', 'rust'][i % 4]}">${escapeHtml(initials)}</div>
+              <div class="who">
+                <strong>${escapeHtml(r.firstNameInitial || 'Anonymous')}</strong>
+                <span class="review-meta">${escapeHtml(dateRange ? 'Lived here ' + dateRange + ' · Verified' : 'Verified resident')}</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-body">${body || '<p class="muted">This reviewer left only ratings.</p>'}</div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderEmpty(data) {
+    const empty = document.getElementById('emptySection');
+    if (data.scope === 'empty') {
+      empty.style.display = '';
+      document.getElementById('emptyAddress').textContent = data.display || 'this address';
+    } else {
+      empty.style.display = 'none';
+    }
+  }
+
+  function renderSuburbInfo(data) {
+    const cont = document.getElementById('suburbTipsContainer');
+    const suburb = (data.query && data.query.parts && data.query.parts.suburb) || '';
+    cont.innerHTML = suburbTipsFor(suburb);
+  }
+
+  function renderCta(data) {
+    const cta = document.getElementById('ctaHeading');
+    if (data.scope === 'empty') {
+      cta.innerHTML = 'Be the <em class="italic">first</em> to review this address.';
+    } else if (data.scope === 'suburb') {
+      cta.innerHTML = 'Know this place? <em class="italic">Help the next person</em>.';
+    } else if (data.scope === 'building') {
+      cta.innerHTML = 'Lived in this exact unit? <em class="italic">Add yours</em>.';
+    } else {
+      cta.innerHTML = 'Add what you\'d <em class="italic">only</em> know after a year.';
+    }
+  }
+
+  // Suburb tips: a minimal lookup table. Could be extended later by suburb.
+  function suburbTipsFor(suburb) {
+    const SUBURB_DATA = {
+      'ashfield': {
+        cafes: 'Happyfield, Solstice, Cafe X.',
+        eats: 'Pho Vien, Bing Boy, Mamak.',
+        restaurants: 'La Disfida, Yakitori Jin, Magic Wok.',
+        essentials: 'Ashfield Mall, Coles Liverpool Rd, Ashfield Fresh.',
+        transport: 'Ashfield Station (T2/T3) · 5 min walk · Buses on Liverpool Rd.',
+        green: 'Ashfield Park, Yeo Park, Hammond Park · all within 10 min walk.',
+      },
+      'surry hills': {
+        cafes: 'Single O, Reuben Hills, Dukes Coffee Roasters.',
+        eats: 'Mary\'s, Fitzroy Pizza Co, Faheems.',
+        restaurants: 'Firedoor, Nomad, Bar H, Chin Chin.',
+        essentials: 'Harris Farm, Coles Eastlakes, IGA Crown St.',
+        transport: 'Central · 10 min walk · Light rail at Surry Hills · 6 min walk.',
+        green: 'Prince Alfred Park · pool, oval, walking paths.',
+      },
+      'brunswick': {
+        cafes: 'Padre, Lygon Larder, Brunswick East Project.',
+        eats: 'Half Moon, Very Good Falafel, Tiba\'s Lebanese.',
+        restaurants: 'Hellenic Republic, Babajan, Lucky Penny.',
+        essentials: 'Mediterranean Wholesalers, Coles Brunswick, Sydney Rd shops.',
+        transport: 'Tram 19 down Sydney Rd · trains at Brunswick / Jewell.',
+        green: 'CERES, Princes Park, Royal Park within reach.',
+      },
+    };
+    const data = SUBURB_DATA[suburb.toLowerCase()] || null;
+    const fallback = {
+      cafes: 'Search Broadsheet or Time Out for current top picks.',
+      eats: 'Ask in the local r/sydney or r/melbourne community.',
+      restaurants: 'See Good Food Guide for the current best in the area.',
+      essentials: 'Use Google Maps to map the nearest supermarket and pharmacy.',
+      transport: 'See Transport for NSW or PTV for full service info.',
+      green: 'Check local council site for parks and green space nearby.',
+    };
+    const d = data || fallback;
+    const note = data
+      ? `Most-mentioned by residents`
+      : `Resident-curated tips will appear here as reviews come in for this area.`;
+
+    return `
+      <div class="tip"><div class="tip-label">Best cafes</div><div class="tip-body">${escapeHtml(d.cafes)}</div><span class="tip-source">${escapeHtml(note)}</span></div>
+      <div class="tip"><div class="tip-label">Cheap eats</div><div class="tip-body">${escapeHtml(d.eats)}</div><span class="tip-source">${escapeHtml(note)}</span></div>
+      <div class="tip"><div class="tip-label">Restaurants worth it</div><div class="tip-body">${escapeHtml(d.restaurants)}</div><span class="tip-source">${escapeHtml(note)}</span></div>
+      <div class="tip"><div class="tip-label">Daily essentials</div><div class="tip-body">${escapeHtml(d.essentials)}</div><span class="tip-source">From Google Maps</span></div>
+      <div class="tip"><div class="tip-label">Transport</div><div class="tip-body">${escapeHtml(d.transport)}</div><span class="tip-source">From local transport authority</span></div>
+      <div class="tip"><div class="tip-label">Green space</div><div class="tip-body">${escapeHtml(d.green)}</div><span class="tip-source">From local council</span></div>
+    `;
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function p(text, smaller) {
+    return '<p' + (smaller ? ' class="small soft" style="margin-bottom: 8px;"' : '') + '>' + escapeHtml(text) + '</p>';
+  }
+  function formatMonth(iso) {
+    if (!iso) return '';
+    try {
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleString('en-AU', { month: 'short', year: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  // ----- 5. Render --------------------------------------------------------
+
+  fetchResults().then(data => {
+    if (!data) {
+      heroEl.innerHTML = `
+        <p class="kicker" style="margin-bottom: 16px;">
+          <span class="dot" style="background: var(--rust); box-shadow: 0 0 0 4px rgba(156,75,34,0.18);"></span>
+          Couldn't load reviews
+        </p>
+        <h1 style="margin: 0 0 10px;">Something went wrong.</h1>
+        <p class="soft">We couldn't reach the review database. Try again in a minute.</p>
+      `;
+      return;
+    }
+
+    renderAddressHero(data);
+    renderSynopsis(data);
+    renderRatings(data);
+    renderReviews(data);
+    renderEmpty(data);
+    renderSuburbInfo(data);
+    renderCta(data);
+  });
+
+})();
+</script>
 
 </body>
 </html>

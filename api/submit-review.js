@@ -8,6 +8,9 @@
 //   AIRTABLE_TABLE_NAME  e.g. reviews
 //   AIRTABLE_TOKEN       a Personal Access Token with data.records:write scope
 
+
+import { buildSlugs } from './_lib/slugify.js';
+
 // Numeric slider fields. Their values arrive as strings from the form;
 // we cast them to integers before sending to Airtable.
 const NUMERIC_FIELDS = [
@@ -110,6 +113,20 @@ export default async function handler(req, res) {
     });
   }
 
+
+  // Compute address slugs for fast lookups in search-reviews.
+  // We always re-derive these server-side rather than trusting the client.
+  const { addressSlug, buildingSlug, suburbSlug } = buildSlugs({
+    unit:     fields.apartmentNumber,
+    street:   fields.streetAddress,
+    suburb:   fields.suburb,
+    state:    fields.state,
+    postcode: fields.postcode,
+  });
+  if (addressSlug)  fields.addressSlug  = addressSlug;
+  if (buildingSlug) fields.buildingSlug = buildingSlug;
+  if (suburbSlug)   fields.suburbSlug   = suburbSlug;
+
   // Metadata.
   fields.status = 'pending';
   fields.submittedAt = new Date().toISOString();
@@ -121,15 +138,41 @@ export default async function handler(req, res) {
     '/' +
     encodeURIComponent(tableName);
 
-  try {
-    const airtableResponse = await fetch(url, {
+  async function postFields(payload) {
+    return fetch(url, {
       method: 'POST',
       headers: {
         Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ fields }),
+      body: JSON.stringify({ fields: payload }),
     });
+  }
+
+  try {
+    let airtableResponse = await postFields(fields);
+
+    // If Airtable rejected because the slug fields aren't in the table schema
+    // yet, retry once without them. Keeps submissions working before the
+    // operator has added the new columns.
+    if (!airtableResponse.ok && airtableResponse.status === 422) {
+      const errorText = await airtableResponse.text();
+      const looksLikeUnknownField = /UNKNOWN_FIELD_NAME|Unknown field name|invalidField/i.test(errorText);
+      if (looksLikeUnknownField) {
+        console.warn('Airtable 422 on slug fields, retrying without them:', errorText);
+        const retryFields = { ...fields };
+        delete retryFields.addressSlug;
+        delete retryFields.buildingSlug;
+        delete retryFields.suburbSlug;
+        airtableResponse = await postFields(retryFields);
+      } else {
+        // Different 422 — re-attach the body for the error path below
+        console.error('Airtable 422:', errorText);
+        return res.status(502).json({
+          error: 'Could not save your review. Please try again in a minute.',
+        });
+      }
+    }
 
     if (!airtableResponse.ok) {
       const errorText = await airtableResponse.text();

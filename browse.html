@@ -3,71 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Browse properties. Open House.</title>
+  <title>Browse properties — Open House</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ===== Nav ===== -->
-<nav class="topnav">
+<header class="topnav">
   <div class="container">
     <a class="brand" href="index.html">
-      <span class="brand-mark">⌂</span>
-      Open House
+      <span class="brand-mark">OH</span> Open House
     </a>
-    <div class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="browse.html" class="active">Browse</a>
-      <a href="review.html">Write a review</a>
+      <a href="review-v2.html">Write a review</a>
       <a href="about.html">About</a>
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- ===== Search header ===== -->
-<section style="padding: 36px 0 24px;">
+<!-- ===== Header + search ===== -->
+<section style="padding: 56px 0 32px;">
   <div class="container">
-    <form class="searchbar" action="search.html" method="get" role="search" style="margin: 0 0 16px;">
-      <input
-        type="text"
-        name="q"
-        placeholder="Search an address, suburb or postcode"
-        aria-label="Search by address, suburb or postcode"
-      />
-      <button class="btn btn-primary" type="submit">Search</button>
-    </form>
+
+    <p class="kicker" style="margin-bottom: 14px;">Browse</p>
+    <h1 style="max-width: 18ch; margin: 0 0 22px;">
+      Every reviewed property, <em class="italic">all in one place</em>.
+    </h1>
+    <p class="soft" style="max-width: 56ch; margin: 0 0 36px; font-size: 1.05rem;">
+      Filter by suburb, property type or rating. Click into any place to see what the people
+      who lived there actually said.
+    </p>
+
+    <div class="search-wrap" style="max-width: 100%;">
+      <form id="browseSearch" class="searchbar" role="search" autocomplete="off" style="margin: 0;">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input
+          type="text"
+          name="q"
+          id="browseSearchInput"
+          placeholder="Search an address, suburb or postcode"
+          aria-label="Search by address, suburb or postcode"
+          autocomplete="off"
+        />
+        <button class="btn btn-primary" type="submit" id="browseSearchSubmit">Search</button>
+      </form>
+      <div class="oh-suggestions" id="browseSearchSuggestions" role="listbox" aria-label="Address suggestions"></div>
+    </div>
+
   </div>
 </section>
 
-<!-- ===== Empty state ===== -->
-<section style="padding: 16px 0 80px;">
+<!-- ===== Filter strip ===== -->
+<section style="padding: 0 0 32px;">
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 14px 0 22px; border-bottom: 1px solid var(--line-strong);">
+      <span class="kicker no-rule" style="margin-right: 8px;">Filters</span>
+      <span class="tag solid">All · 2,847</span>
+      <span class="tag">Apartments · 1,902</span>
+      <span class="tag">Houses · 945</span>
+      <span class="tag">NSW · 1,124</span>
+      <span class="tag">VIC · 893</span>
+      <span class="tag">QLD · 510</span>
+      <span class="tag">Sort: Newest</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Property grid ===== -->
+<section style="padding: 0 0 96px;">
   <div class="container">
 
-    <div style="margin-bottom: 22px;">
-      <p class="eyebrow" style="margin-bottom: 6px;">Browse</p>
-      <h1 style="font-size: 2rem; margin: 0;">Reviewed properties</h1>
-      <p class="soft" style="margin-top: 6px;">
-        Once residents start adding reviews, every reviewed property will
-        appear here. You'll be able to filter by suburb, property type, and
-        rating.
-      </p>
+    <div class="property-grid">
+
+      <a href="/property/58-70-orpington-st-ashfield-2131?address=58–70%20Orpington%20St%2C%20Ashfield%20NSW%202131" class="property-card">
+          <div class="meta-row">
+            <span>Ashfield · NSW · 2131</span>
+          <span class="badge warm">Featured</span>
+        </div>
+        <div class="body">
+          <h3 class="address">58–70 Orpington St</h3>
+          <p class="suburb">2-bed apartment · 18 reviews</p>
+          <p class="summary">Quiet building near the station, lift can be temperamental, north-facing units are stunning in winter.</p>
+          <div class="footer-row">
+            <span class="score"><em>7.6</em><span class="denom">/10</span></span>
+            <span class="count">18 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/214-sydney-rd-brunswick-3056?address=214%20Sydney%20Rd%2C%20Brunswick%20VIC%203056" class="property-card">
+          <div class="meta-row">
+            <span>Brunswick · VIC · 3056</span>
+          <span class="badge">Apartment</span>
+        </div>
+        <div class="body">
+          <h3 class="address">214 Sydney Rd</h3>
+          <p class="suburb">2-bed apartment · 3 reviews</p>
+          <p class="summary">Great bones, awful aircon. The cafe downstairs is the reason to stay; the building lift is the reason to leave.</p>
+          <div class="footer-row">
+            <span class="score"><em>7.4</em><span class="denom">/10</span></span>
+            <span class="count">3 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/88-brookes-st-fortitude-valley-4006?address=88%20Brookes%20St%2C%20Fortitude%20Valley%20QLD%204006" class="property-card">
+          <div class="meta-row">
+            <span>Fortitude Valley · QLD · 4006</span>
+          <span class="badge">Apartment</span>
+        </div>
+        <div class="body">
+          <h3 class="address">88 Brookes St</h3>
+          <p class="suburb">1-bed apartment · 5 reviews</p>
+          <p class="summary">Walkable to everything that matters. Bring earplugs. The on-street parking situation is its own personality test.</p>
+          <div class="footer-row">
+            <span class="score"><em>6.8</em><span class="denom">/10</span></span>
+            <span class="count">5 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/12-hardgrave-rd-west-end-4101?address=12%20Hardgrave%20Rd%2C%20West%20End%20QLD%204101" class="property-card">
+          <div class="meta-row">
+            <span>West End · QLD · 4101</span>
+          <span class="badge">House</span>
+        </div>
+        <div class="body">
+          <h3 class="address">12 Hardgrave Rd</h3>
+          <p class="suburb">3-bed Queenslander · 2 reviews</p>
+          <p class="summary">Beautiful old place, beautiful old plumbing. Worth it for the back deck and the markets two streets over.</p>
+          <div class="footer-row">
+            <span class="score"><em>8.1</em><span class="denom">/10</span></span>
+            <span class="count">2 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/9-204-king-st-newtown-2042?address=9/204%20King%20St%2C%20Newtown%20NSW%202042" class="property-card">
+          <div class="meta-row">
+            <span>Newtown · NSW · 2042</span>
+          <span class="badge">Apartment</span>
+        </div>
+        <div class="body">
+          <h3 class="address">9/204 King St</h3>
+          <p class="suburb">1-bed apartment · 7 reviews</p>
+          <p class="summary">Right above the action. Pros: every cafe and bar you'd want. Cons: every cafe and bar you'd want, until 2am.</p>
+          <div class="footer-row">
+            <span class="score"><em>6.5</em><span class="denom">/10</span></span>
+            <span class="count">7 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/42-hall-st-bondi-2026?address=42%20Hall%20St%2C%20Bondi%20NSW%202026" class="property-card">
+          <div class="meta-row">
+            <span>Bondi · NSW · 2026</span>
+          <span class="badge warm">New</span>
+        </div>
+        <div class="body">
+          <h3 class="address">42 Hall St</h3>
+          <p class="suburb">Studio · 1 review</p>
+          <p class="summary">Five-minute walk to the beach, every Sunday is a parade. Salt eats every appliance eventually.</p>
+          <div class="footer-row">
+            <span class="score"><em>7.9</em><span class="denom">/10</span></span>
+            <span class="count">1 review</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/120-gertrude-st-fitzroy-3065?address=120%20Gertrude%20St%2C%20Fitzroy%20VIC%203065" class="property-card">
+          <div class="meta-row">
+            <span>Fitzroy · VIC · 3065</span>
+          <span class="badge">Apartment</span>
+        </div>
+        <div class="body">
+          <h3 class="address">120 Gertrude St</h3>
+          <p class="suburb">2-bed warehouse conversion · 4 reviews</p>
+          <p class="summary">High ceilings, single glazing. Heating bills in July were close to half the rent. Worth it on a Saturday.</p>
+          <div class="footer-row">
+            <span class="score"><em>7.2</em><span class="denom">/10</span></span>
+            <span class="count">4 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/31-stanley-st-north-adelaide-5006?address=31%20Stanley%20St%2C%20North%20Adelaide%20SA%205006" class="property-card">
+          <div class="meta-row">
+            <span>North Adelaide · SA · 5006</span>
+          <span class="badge">House</span>
+        </div>
+        <div class="body">
+          <h3 class="address">31 Stanley St</h3>
+          <p class="suburb">3-bed bungalow · 2 reviews</p>
+          <p class="summary">Quiet street, park at the end, ten-minute tram into town. The fence costs more to maintain than the lawn.</p>
+          <div class="footer-row">
+            <span class="score"><em>8.4</em><span class="denom">/10</span></span>
+            <span class="count">2 reviews</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/property/6-14-rokeby-rd-subiaco-6008?address=6/14%20Rokeby%20Rd%2C%20Subiaco%20WA%206008" class="property-card">
+          <div class="meta-row">
+            <span>Subiaco · WA · 6008</span>
+          <span class="badge">Apartment</span>
+        </div>
+        <div class="body">
+          <h3 class="address">6/14 Rokeby Rd</h3>
+          <p class="suburb">2-bed apartment · 3 reviews</p>
+          <p class="summary">Walk-everywhere suburb, footy crowd on a Friday. Building's older than it looks, plumbing groans.</p>
+          <div class="footer-row">
+            <span class="score"><em>7.1</em><span class="denom">/10</span></span>
+            <span class="count">3 reviews</span>
+          </div>
+        </div>
+      </a>
+
     </div>
 
-    <div class="empty-state">
-      <h2><span class="flourish">No reviewed properties yet.</span></h2>
-      <p class="soft" style="max-width: 480px; margin: 14px auto 22px;">
-        Open House launches when there are enough reviews to be useful. Be one
-        of the first contributors and help build the database from the ground up.
-      </p>
-      <a href="review.html" class="btn btn-primary">Add the first review</a>
-    </div>
-
-    <div class="callout" style="margin-top: 40px;">
-      <h3>Looking for a specific address?</h3>
-      <p style="margin-bottom: 16px;">
-        If you search for an address that hasn't been reviewed, we'll still
-        show you what's known about the building and the surrounding area.
-      </p>
-      <a href="search.html" class="btn btn-secondary">See an example</a>
+    <div style="display: flex; justify-content: center; margin-top: 56px;">
+      <a href="#" class="btn btn-secondary btn-large">Load more →</a>
     </div>
 
   </div>
@@ -78,30 +237,46 @@
   <div class="container">
     <div>
       <a class="brand" href="index.html">
-        <span class="brand-mark">⌂</span> Open House
+        <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
-        A community record of what Australian homes, buildings and
-        neighbourhoods are really like to live in.
+        A community record of what Australian homes, buildings and neighbourhoods are really
+        like to live in. Independent. Free. Built in Sydney.
       </p>
     </div>
     <div>
       <h4>Explore</h4>
       <a href="browse.html">Browse properties</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="review-v2.html">Write a review</a>
+      <a href="search.html">Search</a>
     </div>
     <div>
       <h4>Community</h4>
+      <a href="about.html">About</a>
       <a href="about.html">How verification works</a>
-      <a href="about.html">Community charter</a>
-      <a href="#">Contact</a>
+      <a href="about.html">Charter</a>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="#">hello@openhouse.au</a>
+      <a href="#">Instagram</a>
+      <a href="#">Press</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    © 2026 Open House. Made in Sydney, Australia.
+    <span>© 2026 Open House · Made in Sydney</span>
+    <span>v3 / Bone &amp; Wattle</span>
   </div>
 </footer>
+
+<script src="/search-autocomplete.js"></script>
+<script>
+  OpenHouseSearch.init({
+    inputId: 'browseSearchInput',
+    submitId: 'browseSearchSubmit',
+    suggestId: 'browseSearchSuggestions',
+  });
+</script>
 
 </body>
 </html>

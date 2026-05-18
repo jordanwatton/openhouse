@@ -3,48 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thanks for your review. Open House.</title>
+  <title>Thanks for your review — Open House</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ===== Nav ===== -->
-<nav class="topnav">
+<header class="topnav">
   <div class="container">
     <a class="brand" href="index.html">
-      <span class="brand-mark">⌂</span>
-      Open House
+      <span class="brand-mark">OH</span> Open House
     </a>
-    <div class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="browse.html">Browse</a>
-      <a href="review.html">Write a review</a>
+      <a href="review-v2.html">Write a review</a>
       <a href="about.html">About</a>
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
 <!-- ===== Confirmation ===== -->
-<section class="hero" style="padding: 96px 0;">
-  <div class="container-narrow" style="text-align: center;">
+<section class="hero">
+  <div class="container" style="text-align: center;">
 
-    <div style="font-size: 3rem; margin-bottom: 14px;">✦</div>
-
-    <h1 style="margin-bottom: 18px;">
-      <span class="flourish">Thanks for your review.</span>
-    </h1>
-
-    <p class="lede" style="margin-bottom: 32px;">
-      Your review has been received. We'll verify your proof of residence
-      within a few days, then publish it under your first name and last
-      initial. The address itself stays public and helps the next person
-      researching the same place.
+    <p class="kicker" style="justify-content: center; margin: 0 auto 28px;">
+      <span class="dot"></span> Submitted · #OH-2847
     </p>
 
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="review.html" class="btn btn-primary">Review another address</a>
-      <a href="index.html" class="btn btn-secondary">Back to home</a>
+    <h1 style="max-width: 18ch; margin: 0 auto 24px;">
+      Thanks. The next renter <em class="italic">owes you one</em>.
+    </h1>
+
+    <p class="lede" style="margin: 0 auto 40px; max-width: 56ch;">
+      Your review is in the queue. We'll verify your proof of residence within a few days,
+      then publish it under your first name and last initial. The address stays public so
+      the next person searching it can find you.
+    </p>
+
+    <div style="display: inline-flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="review-v2.html" class="btn btn-primary">Review another address</a>
+      <a href="browse.html" class="btn btn-secondary">Browse other reviews</a>
     </div>
 
+  </div>
+</section>
+
+<!-- ===== What happens next ===== -->
+<section class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">What happens now</p>
+        <h2 style="margin: 0;">Three steps before it goes live.</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">01 / Today</span>
+        <h3>We verify your residence.</h3>
+        <p>We check your proof of residence against the address. This usually takes a day or two.</p>
+      </div>
+      <div class="feature">
+        <span class="num">02 / This week</span>
+        <h3>We anonymise.</h3>
+        <p>Your unit number, email and any identifying details come off. Only your first name and last initial stay.</p>
+      </div>
+      <div class="feature">
+        <span class="num">03 / Within 7 days</span>
+        <h3>It goes live.</h3>
+        <p>We'll email you the public link. From then on, anyone searching that address will see your review.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -53,28 +83,35 @@
   <div class="container">
     <div>
       <a class="brand" href="index.html">
-        <span class="brand-mark">⌂</span> Open House
+        <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
-        A community record of what Australian homes, buildings and
-        neighbourhoods are really like to live in.
+        A community record of what Australian homes, buildings and neighbourhoods are really
+        like to live in. Independent. Free. Built in Sydney.
       </p>
     </div>
     <div>
       <h4>Explore</h4>
       <a href="browse.html">Browse properties</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="review-v2.html">Write a review</a>
+      <a href="search.html">Search</a>
     </div>
     <div>
       <h4>Community</h4>
+      <a href="about.html">About</a>
       <a href="about.html">How verification works</a>
-      <a href="about.html">Community charter</a>
-      <a href="#">Contact</a>
+      <a href="about.html">Charter</a>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="#">hello@openhouse.au</a>
+      <a href="#">Instagram</a>
+      <a href="#">Press</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    © 2026 Open House. Made in Sydney, Australia.
+    <span>© 2026 Open House · Made in Sydney</span>
+    <span>v3 / Bone &amp; Wattle</span>
   </div>
 </footer>
 

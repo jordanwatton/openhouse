@@ -3,50 +3,243 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Open House</title>
+  <title>Open House — honest reviews of where Australians actually live</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ===== Hero (centered, big logo, search) ===== -->
+<!-- ===== Top nav ===== -->
+<header class="topnav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">OH</span> Open House
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="browse.html">Browse</a>
+      <a href="review-v2.html">Write a review</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
 <section class="hero">
-  <div class="container-narrow">
+  <div class="container">
 
-    <h1 class="hero-brand">
-      <span class="brand-mark">⌂</span>Open House
-    </h1>
-
-    <p class="lede" style="margin-top: 6px;">
-      Search any address in Australia to read what people who lived there had
-      to say. The home itself, the building, and the surrounding suburb, all
-      from real residents.
+    <p class="kicker hero-kicker">
+      <span class="dot"></span> Live · 2,847 honest reviews from real residents
     </p>
 
-    <form id="homeSearch" class="searchbar" action="search.html" method="get" role="search">
-      <input
-        type="text"
-        name="q"
-        id="homeSearchInput"
-        placeholder="Search an address, suburb or postcode"
-        aria-label="Search by address, suburb or postcode"
-        autocomplete="off"
-      />
-      <button class="btn btn-primary" type="submit">Search</button>
-    </form>
+    <h1>
+      Find out what it's actually <em>like</em> to <span class="mark">live there</span>.
+    </h1>
+
+    <p class="lede">
+      Open House is a community record of Australian homes, buildings and suburbs, written by the
+      people who actually lived in them. Search any address to read what stood out, what didn't,
+      and what you'd only know after a year.
+    </p>
+
+    <div class="search-wrap">
+      <form id="homeSearch" class="searchbar" role="search" autocomplete="off">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input
+          type="text"
+          name="q"
+          id="homeSearchInput"
+          placeholder="Try “58 Orpington St, Ashfield” or “Brunswick”"
+          aria-label="Search by address, suburb or postcode"
+          autocomplete="off"
+        />
+        <button class="btn btn-primary btn-large" type="submit" id="homeSearchSubmit">Search</button>
+      </form>
+      <div class="oh-suggestions" id="homeSearchSuggestions" role="listbox" aria-label="Address suggestions"></div>
+    </div>
+
+    <p class="mono small muted" style="margin-top: 18px;">
+      Popular suburbs ·
+      <a href="/property/brunswick-3056?address=Brunswick%20VIC%203056" class="bare" style="color: var(--ink-soft); margin-left: 6px;">Brunswick</a>,
+      <a href="/property/ashfield-2131?address=Ashfield%20NSW%202131" class="bare" style="color: var(--ink-soft);">Ashfield</a>,
+      <a href="/property/fortitude-valley-4006?address=Fortitude%20Valley%20QLD%204006" class="bare" style="color: var(--ink-soft);">Fortitude Valley</a>,
+      <a href="/property/newtown-2042?address=Newtown%20NSW%202042" class="bare" style="color: var(--ink-soft);">Newtown</a>,
+      <a href="/property/west-end-4101?address=West%20End%20QLD%204101" class="bare" style="color: var(--ink-soft);">West End</a>
+    </p>
 
   </div>
 </section>
 
-<!-- ===== Direct CTA: review your old place ===== -->
-<section class="alt-bg" style="padding: 88px 0;">
-  <div class="container-narrow" style="text-align: center;">
-    <h2 style="max-width: 540px; margin: 0 auto 14px;">
-      <span class="flourish">Review a place you've lived</span>
-    </h2>
-    <p class="soft" style="max-width: 460px; margin: 0 auto 28px; font-size: 1.05rem;">
-      Your honest take helps the next person choose where to live.
-    </p>
-    <a href="review.html" class="btn btn-primary btn-large">Write a review</a>
+<!-- ===== Stat strip ===== -->
+<section class="tight">
+  <div class="container">
+    <div class="stat-strip">
+      <div class="stat">
+        <span class="num"><em>2,847</em></span>
+        <span class="label">Reviews · Verified residents</span>
+      </div>
+      <div class="stat">
+        <span class="num">612</span>
+        <span class="label">Suburbs covered</span>
+      </div>
+      <div class="stat">
+        <span class="num">8</span>
+        <span class="label">States &amp; territories</span>
+      </div>
+      <div class="stat">
+        <span class="num">100<span class="serif italic">%</span></span>
+        <span class="label">Independent — no ads, no agents</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recent reviews (editorial showcase) ===== -->
+<section class="alt-bg">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">Recent reviews</p>
+        <h2 style="margin: 0;">What people are <em class="italic">actually</em> saying.</h2>
+      </div>
+      <div class="right">
+        <a href="browse.html" class="bare" style="color: var(--ink); border-bottom: 1px solid var(--ink);">Browse all →</a>
+      </div>
+    </div>
+
+    <div class="two-col">
+
+      <!-- Featured pull-quote -->
+      <div>
+        <p class="kicker" style="margin-bottom: 16px;">Featured · Ashfield, NSW</p>
+        <p class="pull">
+          “The light in the main bedroom is <em>extraordinary</em> in winter.
+          Pour-over in bed, that kind of light. Less great in February — the
+          aircon couldn't keep up.”
+        </p>
+        <p class="pull-meta">Jordan W · Lived there 2022–2024 · Verified</p>
+        <div style="margin-top: 28px;">
+          <a href="property.html" class="btn btn-secondary">Read the full review →</a>
+        </div>
+      </div>
+
+      <!-- Recent reviews list -->
+      <div class="property-grid" style="grid-template-columns: 1fr;">
+
+        <a href="property.html" class="property-card">
+          <div class="meta-row">
+            <span>Brunswick · VIC</span>
+            <span class="badge warm">New</span>
+          </div>
+          <div class="body">
+            <h3 class="address">214 Sydney Rd</h3>
+            <p class="suburb">2-bed apartment · Reviewed by Mei L.</p>
+            <p class="summary">Great bones, awful aircon. The cafe downstairs is the reason to stay; the building lift is the reason to leave.</p>
+            <div class="footer-row">
+              <span class="score"><em>7.4</em><span class="denom">/10</span></span>
+              <span class="count">3 reviews</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="meta-row">
+            <span>Fortitude Valley · QLD</span>
+            <span>Apartment</span>
+          </div>
+          <div class="body">
+            <h3 class="address">88 Brookes St</h3>
+            <p class="suburb">1-bed apartment · Reviewed by Tom K.</p>
+            <p class="summary">Walkable to everything that matters. Bring earplugs. The on-street parking situation is its own personality test.</p>
+            <div class="footer-row">
+              <span class="score"><em>6.8</em><span class="denom">/10</span></span>
+              <span class="count">5 reviews</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="meta-row">
+            <span>West End · QLD</span>
+            <span>House</span>
+          </div>
+          <div class="body">
+            <h3 class="address">12 Hardgrave Rd</h3>
+            <p class="suburb">3-bed Queenslander · Reviewed by Priya R.</p>
+            <p class="summary">Beautiful old place, beautiful old plumbing. Worth it for the back deck and the markets two streets over.</p>
+            <div class="footer-row">
+              <span class="score"><em>8.1</em><span class="denom">/10</span></span>
+              <span class="count">2 reviews</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker" style="margin-bottom: 12px;">How it works</p>
+        <h2 style="margin: 0;">Three steps. No bots. No agents.</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">01 / Search</span>
+        <h3>Look up any address.</h3>
+        <p>
+          Type a street, suburb or postcode. If anyone's lived there and written about it, you'll
+          see the home, the building (if it's an apartment) and the surrounding suburb.
+        </p>
+      </div>
+      <div class="feature">
+        <span class="num">02 / Read honest takes</span>
+        <h3>From people who lived there.</h3>
+        <p>
+          Every review comes from someone we've verified actually lived at that address. No agents.
+          No marketing copy. No reviews of individual landlords or neighbours.
+        </p>
+      </div>
+      <div class="feature">
+        <span class="num">03 / Pass it on</span>
+        <h3>Help the next person.</h3>
+        <p>
+          Moved out recently? Spend five minutes writing what you wish you'd known. It stays public
+          under your first name and last initial. The address stays public so the next renter can find it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Big bottom CTA ===== -->
+<section class="dark-bg" style="padding: 96px 0;">
+  <div class="container" style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;">
+    <div>
+      <p class="kicker" style="color: rgba(241,236,224,0.55); margin-bottom: 18px;">
+        <span class="dot"></span> Add yours
+      </p>
+      <h2 style="color: var(--paper-text); max-width: 18ch; margin: 0;">
+        You know things the next renter would <em class="italic">kill</em> to know.
+      </h2>
+    </div>
+    <div>
+      <p style="color: rgba(241,236,224,0.72); font-size: 1.05rem; max-width: 38ch; margin: 0 0 24px;">
+        Five minutes of your honesty saves the next person a year of regret. Reviews are
+        anonymised, the address is kept public.
+      </p>
+      <a href="review-v2.html" class="btn btn-primary accent btn-large">Write a review →</a>
+    </div>
   </div>
 </section>
 
@@ -55,43 +248,45 @@
   <div class="container">
     <div>
       <a class="brand" href="index.html">
-        <span class="brand-mark">⌂</span> Open House
+        <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
-        A community record of what Australian homes, buildings and
-        neighbourhoods are really like to live in.
+        A community record of what Australian homes, buildings and neighbourhoods are really
+        like to live in. Independent. Free. Built in Sydney.
       </p>
     </div>
     <div>
       <h4>Explore</h4>
       <a href="browse.html">Browse properties</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="review-v2.html">Write a review</a>
+      <a href="search.html">Search</a>
     </div>
     <div>
       <h4>Community</h4>
+      <a href="about.html">About</a>
       <a href="about.html">How verification works</a>
-      <a href="about.html">Community charter</a>
-      <a href="#">Contact</a>
+      <a href="about.html">Charter</a>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="#">hello@openhouse.au</a>
+      <a href="#">Instagram</a>
+      <a href="#">Press</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    © 2026 Open House. Made in Sydney, Australia.
+    <span>© 2026 Open House · Made in Sydney</span>
+    <span>v3 / Bone &amp; Wattle</span>
   </div>
 </footer>
 
+<!-- Open House search: slug-based routing + optional Mapbox autocomplete. -->
+<script src="/search-autocomplete.js"></script>
 <script>
-  // Demo routing: send the search to the right placeholder page based on the input.
-  // Anything containing "ashfield" or "orpington" goes to the sample property page;
-  // everything else goes to the no-reviews state.
-  document.getElementById('homeSearch').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var q = (document.getElementById('homeSearchInput').value || '').toLowerCase();
-    if (q.indexOf('ashfield') !== -1 || q.indexOf('orpington') !== -1) {
-      window.location.href = 'property.html';
-    } else {
-      window.location.href = 'search.html';
-    }
+  OpenHouseSearch.init({
+    inputId: 'homeSearchInput',
+    submitId: 'homeSearchSubmit',
+    suggestId: 'homeSearchSuggestions',
   });
 </script>
 

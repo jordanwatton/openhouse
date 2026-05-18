@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>5 / 142 Crown St, Surry Hills. Open House.</title>
+  <title>5 / 142 Crown St, Surry Hills — Open House</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ===== Nav ===== -->
-<nav class="topnav">
+<header class="topnav">
   <div class="container">
     <a class="brand" href="index.html">
-      <span class="brand-mark">⌂</span>
-      Open House
+      <span class="brand-mark">OH</span> Open House
     </a>
-    <div class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="browse.html">Browse</a>
-      <a href="review.html">Write a review</a>
+      <a href="review-v2.html">Write a review</a>
       <a href="about.html">About</a>
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- ===== Search restated at top ===== -->
-<section style="padding: 36px 0 24px;">
+<!-- ===== Search restated ===== -->
+<section style="padding: 40px 0 16px;">
   <div class="container">
-    <form class="searchbar" action="search.html" method="get" role="search" style="margin: 0 auto 0;">
+    <form class="searchbar" action="search.html" method="get" role="search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+      </svg>
       <input
         type="text"
         name="q"
@@ -39,149 +42,154 @@
 </section>
 
 <!-- ===== No-results header ===== -->
-<section style="padding: 32px 0 24px;">
+<section style="padding: 40px 0 24px;">
   <div class="container">
-    <p class="eyebrow" style="margin-bottom: 8px;">No reviews yet</p>
-    <h1 style="font-size: 2.2rem; margin-bottom: 8px;">5 / 142 Crown Street</h1>
-    <p class="soft" style="font-size: 1.1rem; margin-bottom: 22px;">
-      Surry Hills, NSW 2010. Apartment in a five-storey building.
+
+    <p class="kicker" style="margin-bottom: 18px;">
+      <span class="dot" style="background: var(--rust); box-shadow: 0 0 0 4px rgba(156,75,34,0.18);"></span>
+      No reviews yet
+    </p>
+    <h1 style="max-width: 18ch; margin: 0 0 12px;">
+      <em class="italic">5 / 142</em> Crown Street.
+    </h1>
+    <p class="muted mono" style="font-size: 0.84rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px;">
+      Surry Hills · NSW · 2010 · Apartment in a five-storey building
     </p>
 
-    <div class="callout tinted" style="margin-bottom: 0;">
-      <h3>Nobody's reviewed this exact address yet.</h3>
-      <p style="margin-bottom: 14px;">
-        We've gathered what we know about the building and surrounding area
-        from public sources. If you've lived here, you'd be the first
-        resident reviewer.
+    <div class="callout tinted">
+      <h3 style="margin-bottom: 10px;">Nobody's reviewed this exact address yet.</h3>
+      <p style="margin-bottom: 18px; max-width: 60ch; color: var(--ink-soft);">
+        We've gathered what we know about the building and the surrounding area from public
+        sources below. If you've lived here, you'd be the first resident reviewer.
       </p>
-      <a href="review.html" class="btn btn-primary">Write the first review</a>
+      <a href="review-v2.html" class="btn btn-primary">Write the first review →</a>
     </div>
+
   </div>
 </section>
 
-<!-- ===== About the building (scraped data) ===== -->
-<section style="padding: 32px 0;">
+<!-- ===== About the building ===== -->
+<section style="padding: 64px 0 32px;">
   <div class="container">
-    <div class="two-col">
+
+    <div class="section-head">
       <div>
-        <h2>About the building</h2>
-        <p class="soft">
-          Gathered from public listings and council records.
-        </p>
-        <div class="card" style="margin-top: 18px;">
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 18px 28px;">
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Type</p>
-              <p style="margin: 0; font-weight: 500;">Five-storey residential</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Year built</p>
-              <p style="margin: 0; font-weight: 500;">c. 2008</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Total units</p>
-              <p style="margin: 0; font-weight: 500;">22 apartments</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Strata plan</p>
-              <p style="margin: 0; font-weight: 500;">SP 84229</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Last sold (this unit)</p>
-              <p style="margin: 0; font-weight: 500;">$945,000 in March 2023</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Median rent (2BR)</p>
-              <p style="margin: 0; font-weight: 500;">$880 per week</p>
-            </div>
+        <p class="kicker" style="margin-bottom: 12px;">About the property</p>
+        <h2 style="margin: 0;">What we know <em class="italic">so far</em>.</h2>
+      </div>
+      <div class="right"><span>From public records</span></div>
+    </div>
+
+    <div class="two-col">
+
+      <div class="card elevated">
+        <p class="kicker no-rule" style="margin-bottom: 18px; color: var(--ink);">The building</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px;">
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Type</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">Five-storey residential</p>
           </div>
-          <p class="small muted" style="margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line);">
-            Sources: realestate.com.au, NSW Land Registry, City of Sydney
-          </p>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Year built</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">c. 2008</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Total units</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">22 apartments</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Strata plan</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">SP 84229</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Last sale (unit 5)</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">$945,000 · Mar 2023</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Median rent (2BR)</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">$880 / week</p>
+          </div>
+        </div>
+        <p class="mono tiny muted" style="margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); text-transform: uppercase; letter-spacing: 0.06em;">
+          Sources · realestate.com.au · NSW Land Registry · City of Sydney
+        </p>
+      </div>
+
+      <div class="card elevated">
+        <p class="kicker no-rule" style="margin-bottom: 18px; color: var(--ink);">The neighbourhood</p>
+        <p style="font-family: var(--serif); font-size: 1.18rem; line-height: 1.45; margin: 0 0 18px;">
+          Surry Hills is one of inner Sydney's most walkable suburbs — a dense mix of warehouse
+          conversions, terraces and apartment blocks. Crown and Bourke Street are the main
+          commercial spines.
+        </p>
+        <hr class="rule" style="margin: 8px 0 18px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px;">
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Walk score</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">96 / 100</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Transit</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">Excellent</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">Crime trend</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">Below median</p>
+          </div>
+          <div>
+            <p class="mono small muted" style="text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 4px;">School zone</p>
+            <p class="serif" style="margin: 0; font-size: 1.2rem;">Bourke St Public</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h2>About the neighbourhood</h2>
-        <p class="soft">
-          Surry Hills, summarised from public sources.
-        </p>
-        <div class="card" style="margin-top: 18px;">
-          <p style="margin: 0;">
-            Surry Hills is one of inner Sydney's most walkable suburbs. It's a
-            dense mix of warehouse conversions, terraces and apartment blocks.
-            Crown Street and Bourke Street are the main commercial spines.
-            Central Station is roughly a 10 minute walk; light rail at Surry
-            Hills stops on Devonshire Street.
-          </p>
-          <hr class="divider" style="margin: 16px 0;">
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px 28px;">
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Walk Score</p>
-              <p style="margin: 0; font-weight: 500;">96 of 100</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Transit</p>
-              <p style="margin: 0; font-weight: 500;">Excellent</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">Crime trend</p>
-              <p style="margin: 0; font-weight: 500;">Below Sydney median</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom: 4px;">School zone</p>
-              <p style="margin: 0; font-weight: 500;">Bourke St Public</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Local insights (curated/scraped) ===== -->
+<!-- ===== Local insights ===== -->
 <section class="alt-bg">
   <div class="container">
-    <div style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
+
+    <div class="section-head">
       <div>
-        <p class="eyebrow" style="margin-bottom: 6px;">Around the area</p>
-        <h2 style="margin: 0;">What's nearby</h2>
-        <p class="soft" style="margin-top: 6px;">
-          Curated from public guides. As resident reviews come in, this section
-          will be cross-referenced with what residents themselves recommend.
-        </p>
+        <p class="kicker" style="margin-bottom: 12px;">Around the area</p>
+        <h2 style="margin: 0;">What's nearby.</h2>
+      </div>
+      <div class="right">
+        <span>From public guides · pending resident input</span>
       </div>
     </div>
 
     <div class="tip-grid">
       <div class="tip">
-        <div class="tip-label">Notable cafes</div>
-        <div class="tip-body">Single O Surry Hills, Reuben Hills, Dukes Coffee Roasters.</div>
+        <div class="tip-label">Best cafes</div>
+        <div class="tip-body">Single O, Reuben Hills, Dukes Coffee Roasters.</div>
         <span class="tip-source">From Broadsheet</span>
       </div>
       <div class="tip">
-        <div class="tip-label">Local restaurants</div>
+        <div class="tip-label">Restaurants worth it</div>
         <div class="tip-body">Firedoor, Nomad, Bar H, Chin Chin.</div>
         <span class="tip-source">From Broadsheet</span>
       </div>
       <div class="tip">
         <div class="tip-label">Daily essentials</div>
-        <div class="tip-body">Harris Farm Cleveland St, Coles Eastlakes, IGA Crown St.</div>
+        <div class="tip-body">Harris Farm, Coles Eastlakes, IGA Crown St.</div>
         <span class="tip-source">From Google Maps</span>
       </div>
       <div class="tip">
         <div class="tip-label">Transport</div>
-        <div class="tip-body">Central Station 10 min walk. Surry Hills light rail 6 min walk. Multiple bus routes on Crown St.</div>
+        <div class="tip-body">Central · 10 min walk · Light rail at Surry Hills · 6 min walk.</div>
         <span class="tip-source">From Transport for NSW</span>
       </div>
       <div class="tip">
         <div class="tip-label">Green space</div>
-        <div class="tip-body">Prince Alfred Park, 5 min walk. Pool, oval, walking paths.</div>
+        <div class="tip-body">Prince Alfred Park · pool, oval, walking paths.</div>
         <span class="tip-source">From City of Sydney</span>
       </div>
       <div class="tip">
-        <div class="tip-label">Bars and pubs</div>
-        <div class="tip-body">The Clock Hotel, Bar Brosé, The Dolphin, Cantina OK.</div>
+        <div class="tip-label">Bars &amp; pubs</div>
+        <div class="tip-body">The Clock, Bar Brosé, The Dolphin, Cantina OK.</div>
         <span class="tip-source">From Time Out</span>
       </div>
     </div>
@@ -189,78 +197,82 @@
 </section>
 
 <!-- ===== Map ===== -->
-<section style="padding: 64px 0;">
+<section>
   <div class="container">
-    <div style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
+    <div class="section-head">
       <div>
-        <p class="eyebrow" style="margin-bottom: 6px;">Location</p>
-        <h2 style="margin: 0;">On the map</h2>
-        <p class="soft" style="margin-top: 6px;">
-          As nearby properties get reviewed, they'll appear here as clickable pins.
-        </p>
+        <p class="kicker" style="margin-bottom: 12px;">Location</p>
+        <h2 style="margin: 0;">On the map.</h2>
       </div>
     </div>
 
     <div class="map-wrap">
       <div class="map">
         <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <g stroke="rgba(135,127,115,0.20)" stroke-width="20" fill="none">
+          <g stroke="rgba(20,18,12,0.16)" stroke-width="20" fill="none">
             <path d="M -20 90 L 820 110" />
             <path d="M -20 230 L 820 240" />
             <path d="M 220 -10 L 200 380" />
             <path d="M 480 -10 L 510 380" />
           </g>
-          <g stroke="rgba(135,127,115,0.10)" stroke-width="10" fill="none">
+          <g stroke="rgba(20,18,12,0.08)" stroke-width="10" fill="none">
             <path d="M -20 160 L 820 170" />
             <path d="M -20 300 L 820 310" />
             <path d="M 100 -10 L 90 380" />
             <path d="M 360 -10 L 350 380" />
             <path d="M 660 -10 L 670 380" />
           </g>
-          <g font-family="Georgia, serif" font-size="11" fill="rgba(79,73,64,0.55)" font-style="italic">
-            <text x="40"  y="105">Cleveland St</text>
-            <text x="40"  y="245">Devonshire St</text>
-            <text x="225" y="40" transform="rotate(0)">Crown St</text>
-            <text x="510" y="40">Bourke St</text>
-            <text x="40"  y="320">Cooper St</text>
+          <g font-family="Instrument Serif, Georgia, serif" font-size="14" fill="rgba(61,58,51,0.7)" font-style="italic">
+            <text x="40"  y="108">Cleveland St</text>
+            <text x="40"  y="248">Devonshire St</text>
+            <text x="225" y="42">Crown St</text>
+            <text x="510" y="42">Bourke St</text>
           </g>
-          <rect x="540" y="250" width="160" height="90" rx="10" fill="rgba(111,136,101,0.20)" />
-          <text x="555" y="305" font-family="Georgia, serif" font-size="11" fill="rgba(111,136,101,0.85)" font-style="italic">
+          <rect x="540" y="250" width="160" height="90" rx="10" fill="rgba(79,106,63,0.25)" />
+          <text x="555" y="305" font-family="Instrument Serif, Georgia, serif" font-size="14" fill="rgba(79,106,63,0.95)" font-style="italic">
             Prince Alfred Park
           </text>
 
-          <!-- Searched address pin -->
           <g class="map-pin" transform="translate(220 175)">
-            <circle r="14" fill="#C25A2C" />
-            <circle r="6" fill="white" />
-            <text y="-22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="600" fill="#2A2520">
+            <circle r="14" fill="#9C4B22" />
+            <circle r="6" fill="#FAF7EE" />
+            <text y="-22" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#15140F">
               5 / 142 Crown St
             </text>
-            <text y="-8" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#877F73">
-              No reviews yet
+            <text y="-8" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#7A7468" letter-spacing="1">
+              NO REVIEWS YET
             </text>
           </g>
         </svg>
       </div>
       <div class="map-legend">
         <div>
-          <span class="key"><span class="dot" style="background: var(--terracotta);"></span>Searched address</span>
-          <span class="key"><span class="dot" style="background: var(--sage);"></span>Reviewed properties (none yet)</span>
+          <span class="key"><span class="dot" style="background: var(--rust);"></span>Searched address</span>
+          <span class="key"><span class="dot" style="background: var(--moss);"></span>Reviewed properties · none nearby yet</span>
         </div>
-        <span class="small muted">Reviewed properties will appear as you and others contribute.</span>
+        <span>Reviewed properties appear as pins.</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== Bottom CTA ===== -->
-<section class="alt-bg" style="padding: 72px 0;">
-  <div class="container-narrow" style="text-align: center;">
-    <h2><span class="flourish">Lived at 5 / 142 Crown Street?</span></h2>
-    <p class="soft" style="margin: 14px auto 22px; max-width: 460px;">
-      You'd be the first to review this address.
-    </p>
-    <a href="review.html" class="btn btn-primary btn-large">Write the first review</a>
+<section class="dark-bg" style="padding: 96px 0;">
+  <div class="container" style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;">
+    <div>
+      <p class="kicker" style="color: rgba(241,236,224,0.55); margin-bottom: 18px;">
+        <span class="dot"></span> Lived here?
+      </p>
+      <h2 style="color: var(--paper-text); max-width: 18ch; margin: 0;">
+        Be the first to review <em class="italic">5 / 142 Crown St</em>.
+      </h2>
+    </div>
+    <div>
+      <p style="color: rgba(241,236,224,0.72); font-size: 1.05rem; max-width: 38ch; margin: 0 0 24px;">
+        Even a one-sentence review helps the next person. We verify, anonymise, then publish.
+      </p>
+      <a href="review-v2.html" class="btn btn-primary accent btn-large">Write the first review →</a>
+    </div>
   </div>
 </section>
 
@@ -269,28 +281,35 @@
   <div class="container">
     <div>
       <a class="brand" href="index.html">
-        <span class="brand-mark">⌂</span> Open House
+        <span class="brand-mark">OH</span> Open House
       </a>
       <p class="footer-blurb">
-        A community record of what Australian homes, buildings and
-        neighbourhoods are really like to live in.
+        A community record of what Australian homes, buildings and neighbourhoods are really
+        like to live in. Independent. Free. Built in Sydney.
       </p>
     </div>
     <div>
       <h4>Explore</h4>
       <a href="browse.html">Browse properties</a>
-      <a href="review.html">Write a review</a>
-      <a href="about.html">About</a>
+      <a href="review-v2.html">Write a review</a>
+      <a href="search.html">Search</a>
     </div>
     <div>
       <h4>Community</h4>
+      <a href="about.html">About</a>
       <a href="about.html">How verification works</a>
-      <a href="about.html">Community charter</a>
-      <a href="#">Contact</a>
+      <a href="about.html">Charter</a>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="#">hello@openhouse.au</a>
+      <a href="#">Instagram</a>
+      <a href="#">Press</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    © 2026 Open House. Made in Sydney, Australia.
+    <span>© 2026 Open House · Made in Sydney</span>
+    <span>v3 / Bone &amp; Wattle</span>
   </div>
 </footer>
 

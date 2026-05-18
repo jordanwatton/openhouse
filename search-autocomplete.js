@@ -123,6 +123,25 @@
     return global.OPEN_HOUSE_MAPBOX_TOKEN || null;
   }
 
+  // Fetch the public Mapbox token from /api/config once, so we don't have to
+  // embed it in every HTML page (and so GitHub secret scanning doesn't flag
+  // the repo). Cached for the page lifetime.
+  let configFetched = false;
+  async function ensureConfig() {
+    if (configFetched || mapboxToken()) return;
+    configFetched = true;
+    try {
+      const r = await fetch('/api/config');
+      if (!r.ok) return;
+      const data = await r.json();
+      if (data && data.mapboxToken) {
+        global.OPEN_HOUSE_MAPBOX_TOKEN = data.mapboxToken;
+      }
+    } catch (err) {
+      // Offline or no /api/config — fall back to plain submission.
+    }
+  }
+
   let activeSuggestionsRequest = 0;
   let activeSuggestions = [];
   let activeIndex = -1;
@@ -189,6 +208,10 @@
       console.warn('OpenHouseSearch: input not found:', opts.inputId);
       return;
     }
+
+    // Pull the Mapbox token from /api/config in the background. Until it
+    // resolves, suggestions just no-op — but plain form submission already works.
+    ensureConfig();
 
     function submitNow(rawOverride) {
       const raw = (rawOverride != null) ? rawOverride : (input.value || '').trim();
