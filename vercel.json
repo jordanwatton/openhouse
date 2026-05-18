@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/property/:slug", "destination": "/property.html" }
+  ],
+  "cleanUrls": true
+}
